@@ -3,8 +3,6 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 import os
 import logging
-from aiohttp import web
-import asyncio
 
 # Set up logging
 logging.basicConfig(
@@ -18,7 +16,7 @@ TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 WEBHOOK_URL = os.getenv('WEBHOOK_URL')
 PORT = int(os.getenv('PORT', 8000))
 
-# Scheme index (same as before)
+# Scheme index
 SCHEMES = {
     "cat1": {
         "name": "शैक्षणिक योजना",
@@ -265,24 +263,7 @@ async def error_handler(update: Update, context):
     if update and update.message:
         await update.message.reply_text("काहीतरी चुकले. कृपया पुन्हा प्रयत्न करा.")
 
-# Health check handler for aiohttp
-async def health_check(request):
-    logger.info("Received health check request")
-    return web.Response(text="OK", status=200)
-
-# Set up aiohttp server for health check
-async def start_health_server():
-    app = web.Application()
-    app.router.add_get('/health', health_check)
-    app.router.add_post('/health', health_check)  # Support both GET and POST
-    runner = web.AppRunner(app)
-    await runner.setup()
-    site = web.TCPSite(runner, '0.0.0.0', PORT)
-    await site.start()
-    logger.info(f"Health check server running on port {PORT}")
-
-# Main function to run both Telegram bot and health check server
-async def main_async():
+def main():
     # Validate environment variables
     if not TOKEN:
         logger.error("TELEGRAM_BOT_TOKEN is not set in environment variables")
@@ -291,7 +272,7 @@ async def main_async():
         logger.error("WEBHOOK_URL is not set in environment variables")
         raise ValueError("WEBHOOK_URL is not set")
 
-    # Create the Telegram bot application
+    # Create the Application with the bot's token
     app = ApplicationBuilder().token(TOKEN).build()
 
     # Add handlers
@@ -300,25 +281,16 @@ async def main_async():
     app.add_handler(CallbackQueryHandler(button))
     app.add_error_handler(error_handler)
 
-    # Start the health check server
-    health_task = asyncio.create_task(start_health_server())
-
-    # Start the Telegram bot webhook
+    # Start the webhook
     logger.info(f"Starting webhook on port {PORT} with URL {WEBHOOK_URL}")
-    await app.bot.set_webhook(url=f"{WEBHOOK_URL}{TOKEN}")
-    await app.run_webhook(
+    app.run_webhook(
         listen="0.0.0.0",
         port=PORT,
         url_path=TOKEN,
         webhook_url=f"{WEBHOOK_URL}{TOKEN}"
     )
 
-    # Keep the health check server running
-    await health_task
-
-def main():
-    # Run the async main function
-    asyncio.run(main_async())
+    logger.info("Bot is running...")
 
 if __name__ == '__main__':
     main()
