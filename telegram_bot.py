@@ -367,6 +367,10 @@ async def button(update: Update, context):
             reply_markup = InlineKeyboardMarkup(keyboard)
             await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
+            if "images" in subcat_data:
+                for image_url in subcat_data["images"]:
+                    await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
+                    
         elif len(parts) == 4:
             category_id, subcat_idx, item_type, item_idx = parts
             subcat_idx = int(subcat_idx)
@@ -390,6 +394,10 @@ async def button(update: Update, context):
                         f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
                         reply_markup=reply_markup
                     )
+                     if "images" in item_data:
+                        for image_url in item_data["images"]:
+                            await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
+
                 else:
                     keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
                     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -398,7 +406,10 @@ async def button(update: Update, context):
                         reply_markup=reply_markup,
                         parse_mode="Markdown"
                     )
-
+                    if "images" in item_data:
+                        for image_url in item_data["images"]:
+                            await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
+                   
         elif len(parts) == 5:
             category_id, subcat_idx, item_type, item_idx, subitem_idx = parts
             subcat_idx = int(subcat_idx)
@@ -417,6 +428,9 @@ async def button(update: Update, context):
                     reply_markup=reply_markup,
                     parse_mode="Markdown"
                 )
+                if "images" in corp_data:
+                        for image_url in corp_data["images"]:
+                            await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
 
         elif len(parts) == 6:
             category_id, subcat_idx, _, corp_idx, _, subitem_idx = parts
@@ -435,6 +449,9 @@ async def button(update: Update, context):
                 reply_markup=reply_markup,
                 parse_mode="Markdown"
             )
+            if "images" in subitem_data:
+                    for image_url in subitem_data["images"]:
+                        await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
 # Error handler
 async def error_handler(update: Update, context):
     logger.error(f"Update {update} caused error: {context.error}")
