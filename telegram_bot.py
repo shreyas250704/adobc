@@ -51,51 +51,36 @@ SCHEMES = {
     },
     "cat2": {
         "name": "घरकुल/पायाभूत सुविधा बाबतच्या योजना",
-        "subcategories": [
-            {
-                "name": "योजना",
-                "items": [
-                    {"name": "वसंतराव नाईक तांडा/वस्ती सुधार योजना", "details": "वसंतराव नाईक तांडा आणि वस्ती सुधारणेसाठी योजना."},
-                    {"name": "विमुक्त जाती भटक्या जमाती या घटकांसह यशवंतराव चव्हाण मुक्त वसाहत योजना", "details": "विमुक्त जाती आणि भटक्या जमातींसाठी यशवंतराव चव्हाण मुक्त वसाहत योजना."},
-                    {"name": "मोदी आवाज घरकुल योजना", "details": "गरजू कुटुंबांना घरकुले बांधून देणारी योजना."}
-                ]
-            }
+        "items": [
+            {"name": "वसंतराव नाईक तांडा/वस्ती सुधार योजना", "details": "वसंतराव नाईक तांडा आणि वस्ती सुधारणेसाठी योजना."},
+            {"name": "विमुक्त जाती भटक्या जमाती या घटकांसह यशवंतराव चव्हाण मुक्त वसाहत योजना", "details": "विमुक्त जाती आणि भटक्या जमातींसाठी यशवंतराव चव्हाण मुक्त वसाहत योजना."},
+            {"name": "मोदी आवाज घरकुल योजना", "details": "गरजू कुटुंबांना घरकुले बांधून देणारी योजना."}
         ]
     },
     "cat3": {
         "name": "भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना",
-        "subcategories": [
-            {
-                "name": "योजना",
-                "items": [
-                    {"name": "धनगर समाजाच्या विद्यार्थ्यांना शहरातील इंग्रजी माध्यमाच्या नामांकित निवासी शाळेत प्रवेश मिळवून देणे", "details": "धनगर समाजाच्या विद्यार्थ्यांना इंग्रजी माध्यमाच्या निवासी शाळेत प्रवेश मिळवून देणे."},
-                    {"name": "भटक्या जमाती क (धनगर) प्रवर्गातील मॅट्रिकोत्तर शिक्षण घेणाऱ्या गुणवत्ताधारक विद्यार्थ्यांसाठी राज्याच्या महसुली विभागाच्या मुख्यालयाच्या ठिकाणी वसतीगृह निर्माण करणे", "details": "धनगर प्रवर्गातील विद्यार्थ्यांसाठी वसतीगृह निर्माण करणे."},
-                    {"name": "धनगर समाजाच्या विद्यार्थ्यांसाठी पंडित दीनदयाल उपाध्याय स्वयंम योजना", "details": "धनगर समाजाच्या विद्यार्थ्यांसाठी स्वयंम योजना."},
-                    {"name": "केंद्र शासनाच्या स्टॅन्ड अप योजनेत भटक्या जमाती क प्रवर्गातील धनगर समाजाच्या महिलांना सहाय्यक करण्यासाठी मार्जिन मनी उपलब्ध करून देणे", "details": "धनगर समाजाच्या महिलांसाठी स्टॅन्ड अप योजनेत मार्जिन मनी."},
-                    {"name": "भटक्या जमाती क प्रवर्गातील धनगर समाजाच्या बेघर कुटुंबीयांना घरकुले बांधून देणे", "details": "धनगर समाजाच्या बेघर कुटुंबांना घरकुले बांधून देणे."},
-                    {"name": "भटक्या जमाती क या प्रवर्गातील आवश्यक असलेल्या परंतु अर्थसंकल्पीत निधी उपलब्ध नसलेल्या योजना/कार्यक्रम राबविण्यासाठी न्यूक्लियस बजेट योजना", "details": "आवश्यक योजनांसाठी न्यूक्लियस बजेट योजना."},
-                    {"name": "राज्यातील भटक्या जमाती क प्रवर्गातील सभासदांच्या सहकारी सूत गिरण्यांना भाग भांडवल मंजूर करणे", "details": "सहकारी सूत गिरण्यांना भाग भांडवल मंजूर करणे."},
-                    {"name": "धनगर समाजातील विद्यार्थ्यांसाठी संघ लोकसेवा आयोग/महाराष्ट्र लोकसेवा आयोग यांच्या पूर्व परीक्षेसाठी निवासी प्रशिक्षण देणे", "details": "UPSC/MPSC पूर्व परीक्षेसाठी प्रशिक्षण."},
-                    {"name": "धनगर समाजातील बेरोजगार युवक युवतीस लष्करातील सैनिक भरती व राज्यातील पोलीस भरतीसाठी आवश्यक ते मूलभूत प्रशिक्षण देणे", "details": "सैनिक आणि पोलीस भरतीसाठी प्रशिक्षण."},
-                    {"name": "भटक्या जमाती क मधील धनगर समाजातील बेरोजगार युवक युवतींना स्पर्धा परीक्षेसाठी परीक्षा शुल्कात आर्थिक सवलती लागू करणे बाबत", "details": "स्पर्धा परीक्षा शुल्कात सवलत."},
-                    {"name": "धनगर समाजातील लोकांना ग्रामीण परिसरातील कुकुट पालन संकल्पने अंतर्गत धनगर समाजातील कुटुंबीयांना ७५ टक्के अनुदानावर चार आठवडे वयाच्या सुधारित देशी प्रजातीच्या १०० कुकुट पक्षांच्या खरेदी व संगोपनासाठी अर्थसहाय्य", "details": "कुकुट पालनासाठी ७५ टक्के अनुदान."},
-                    {"name": "भटक्या जमाती क या मागास प्रवर्गातील धनगर व तत्सम समाजातील लाभार्थ्यांना राज्यस्तरीय योजनेअंतर्गत भूमिहीन मेंढपाळ कुटुंब साठी अर्धबंदिस्त, बंदिस्त मेंढीपालन करण्याकरिता जागा खरेदीसाठी अनुदान स्वरूपात एकवेळचे एक रकमी अर्थसहाय देणे", "details": "मेंढीपालनासाठी जागा खरेदी अनुदान."},
-                    {"name": "भटक्या जमाती क प्रवर्गातील धनगर समाजातील मेंढपाळ कुटुंबांना पावसाळ्यात चराई करण्याकरिता जून ते सप्टेंबर या चार महिन्यांच्या कालावधीसाठी अनुदान देणे", "details": "पावसाळ्यात चराईसाठी अनुदान."}
-                ]
-            }
+        "items": [
+            {"name": "धनगर समाजाच्या विद्यार्थ्यांना शहरातील इंग्रजी माध्यमाच्या नामांकित निवासी शाळेत प्रवेश मिळवून देणे", "details": "धनगर समाजाच्या विद्यार्थ्यांना इंग्रजी माध्यमाच्या निवासी शाळेत प्रवेश मिळवून देणे."},
+            {"name": "भटक्या जमाती क (धनगर) प्रवर्गातील मॅट्रिकोत्तर शिक्षण घेणाऱ्या गुणवत्ताधारक विद्यार्थ्यांसाठी राज्याच्या महसुली विभागाच्या मुख्यालयाच्या ठिकाणी वसतीगृह निर्माण करणे", "details": "धनगर प्रवर्गातील विद्यार्थ्यांसाठी वसतीगृह निर्माण करणे."},
+            {"name": "धनगर समाजाच्या विद्यार्थ्यांसाठी पंडित दीनदयाल उपाध्याय स्वयंम योजना", "details": "धनगर समाजाच्या विद्यार्थ्यांसाठी स्वयंम योजना."},
+            {"name": "केंद्र शासनाच्या स्टॅन्ड अप योजनेत भटक्या जमाती क प्रवर्गातील धनगर समाजाच्या महिलांना सहाय्यक करण्यासाठी मार्जिन मनी उपलब्ध करून देणे", "details": "धनगर समाजाच्या महिलांसाठी स्टॅन्ड अप योजनेत मार्जिन मनी."},
+            {"name": "भटक्या जमाती क प्रवर्गातील धनगर समाजाच्या बेघर कुटुंबीयांना घरकुले बांधून देणे", "details": "धनगर समाजाच्या बेघर कुटुंबांना घरकुले बांधून देणे."},
+            {"name": "भटक्या जमाती क या प्रवर्गातील आवश्यक असलेल्या परंतु अर्थसंकल्पीत निधी उपलब्ध नसलेल्या योजना/कार्यक्रम राबविण्यासाठी न्यूक्लियस बजेट योजना", "details": "आवश्यक योजनांसाठी न्यूक्लियस बजेट योजना."},
+            {"name": "राज्यातील भटक्या जमाती क प्रवर्गातील सभासदांच्या सहकारी सूत गिरण्यांना भाग भांडवल मंजूर करणे", "details": "सहकारी सूत गिरण्यांना भाग भांडवल मंजूर करणे."},
+            {"name": "धनगर समाजातील विद्यार्थ्यांसाठी संघ लोकसेवा आयोग/महाराष्ट्र लोकसेवा आयोग यांच्या पूर्व परीक्षेसाठी निवासी प्रशिक्षण देणे", "details": "UPSC/MPSC पूर्व परीक्षेसाठी प्रशिक्षण."},
+            {"name": "धनगर समाजातील बेरोजगार युवक युवतीस लष्करातील सैनिक भरती व राज्यातील पोलीस भरतीसाठी आवश्यक ते मूलभूत प्रशिक्षण देणे", "details": "सैनिक आणि पोलीस भरतीसाठी प्रशिक्षण."},
+            {"name": "भटक्या जमाती क मधील धनगर समाजातील बेरोजगार युवक युवतींना स्पर्धा परीक्षेसाठी परीक्षा शुल्कात आर्थिक सवलती लागू करणे बाबत", "details": "स्पर्धा परीक्षा शुल्कात सवलत."},
+            {"name": "धनगर समाजातील लोकांना ग्रामीण परिसरातील कुकुट पालन संकल्पने अंतर्गत धनगर समाजातील कुटुंबीयांना ७५ टक्के अनुदानावर चार आठवडे वयाच्या सुधारित देशी प्रजातीच्या १०० कुकुट पक्षांच्या खरेदी व संगोपनासाठी अर्थसहाय्य", "details": "कुकुट पालनासाठी ७५ टक्के अनुदान."},
+            {"name": "भटक्या जमाती क या मागास प्रवर्गातील धनगर व तत्सम समाजातील लाभार्थ्यांना राज्यस्तरीय योजनेअंतर्गत भूमिहीन मेंढपाळ कुटुंब साठी अर्धबंदिस्त, बंदिस्त मेंढीपालन करण्याकरिता जागा खरेदीसाठी अनुदान स्वरूपात एकवेळचे एक रकमी अर्थसहाय देणे", "details": "मेंढीपालनासाठी जागा खरेदी अनुदान."},
+            {"name": "भटक्या जमाती क प्रवर्गातील धनगर समाजातील मेंढपाळ कुटुंबांना पावसाळ्यात चराई करण्याकरिता जून ते सप्टेंबर या चार महिन्यांच्या कालावधीसाठी अनुदान देणे", "details": "पावसाळ्यात चराईसाठी अनुदान."}
         ]
     },
     "cat4": {
         "name": "सामाजिक योजना",
-        "subcategories": [
-            {
-                "name": "योजना",
-                "items": [
-                    {"name": "सामूहिक विवाह सोहळ्यामध्ये भाग घेऊन विवाह करण्याच्या विजाभज, इमाव व विमाप्र दंपत्यासाठी कन्यादान योजना", "details": "सामूहिक विवाह सोहळ्यासाठी कन्यादान योजना."},
-                    {"name": "महात्मा बसवेश्वर सामाजिक समता शिवा पुरस्कार योजना", "details": "सामाजिक समतेसाठी पुरस्कार योजना."},
-                    {"name": "स्व. वसंतराव नाईक गुणवत्ता पुरस्कार", "details": "गुणवत्तेसाठी वसंतराव नाईक पुरस्कार."}
-                ]
-            }
+        "items": [
+            {"name": "सामूहिक विवाह सोहळ्यामध्ये भाग घेऊन विवाह करण्याच्या विजाभज, इमाव व विमाप्र दंपत्यासाठी कन्यादान योजना", "details": "सामूहिक विवाह सोहळ्यासाठी कन्यादान योजना."},
+            {"name": "महात्मा बसवेश्वर सामाजिक समता शिवा पुरस्कार योजना", "details": "सामाजिक समतेसाठी पुरस्कार योजना."},
+            {"name": "स्व. वसंतराव नाईक गुणवत्ता पुरस्कार", "details": "गुणवत्तेसाठी वसंतराव नाईक पुरस्कार."}
         ]
     },
     "cat5": {
@@ -140,15 +125,22 @@ async def start(update: Update, context):
         logger.error("Update has no message object")
         raise ValueError("Update has no message object")
     keyboard = [
-        [InlineKeyboardButton("1. शैक्षणिक योजना", callback_data="cat1")],
-        [InlineKeyboardButton("2. घरकुल/पायाभूत सुविधा बाबतच्या योजना", callback_data="cat2")],
-        [InlineKeyboardButton("3. भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना", callback_data="cat3")],
-        [InlineKeyboardButton("4. सामाजिक योजना", callback_data="cat4")],
-        [InlineKeyboardButton("5. कौशल्य विकास व अर्थसाहाय्याच्या योजना", callback_data="cat5")],
+        [InlineKeyboardButton("1", callback_data="cat1")],
+        [InlineKeyboardButton("2", callback_data="cat2")],
+        [InlineKeyboardButton("3", callback_data="cat3")],
+        [InlineKeyboardButton("4", callback_data="cat4")],
+        [InlineKeyboardButton("5", callback_data="cat5")],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     logger.info("Sending reply with menu")
-    await update.message.reply_text('विभागा अंतर्गत राबविल्या जाणाऱ्या योजना:\n\nखालीलपैकी एक योजना निवडा:', reply_markup=reply_markup)
+    response = "विभागा अंतर्गत राबविल्या जाणाऱ्या योजना:\n\n"
+    response += "1. शैक्षणिक योजना\n"
+    response += "2. घरकुल/पायाभूत सुविधा बाबतच्या योजना\n"
+    response += "3. भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना\n"
+    response += "4. सामाजिक योजना\n"
+    response += "5. कौशल्य विकास व अर्थसाहाय्याच्या योजना\n\n"
+    response += "खालीलपैकी एक योजना निवडा:"
+    await update.message.reply_text(response, reply_markup=reply_markup)
     logger.info(f"User {update.effective_user.id} started the bot")
 
 # Handler for "Hi" message
@@ -166,12 +158,20 @@ async def button(update: Update, context):
     if query.data in SCHEMES:
         category = SCHEMES[query.data]
         category_name = category["name"]
-        subcategories = category.get("subcategories", [])
         response = f"{category_name} अंतर्गत:\n\n"
         keyboard = []
-        for idx, subcat in enumerate(subcategories, 1):
-            response += f"{idx}. {subcat['name']}\n"
-            keyboard.append([InlineKeyboardButton(f"{idx}. {subcat['name']}", callback_data=f"{query.data}:{idx-1}")])
+
+        if "subcategories" in category:
+            subcategories = category["subcategories"]
+            for idx, subcat in enumerate(subcategories, 1):
+                response += f"{idx}. {subcat['name']}\n"
+                keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:{idx-1}")])
+        else:
+            items = category["items"]
+            for idx, item in enumerate(items, 1):
+                response += f"{idx}. {item['name']}\n"
+                keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:item:{idx-1}")])
+
         keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data="main_menu")])
         reply_markup = InlineKeyboardMarkup(keyboard)
         await query.message.reply_text(response, reply_markup=reply_markup)
@@ -179,14 +179,21 @@ async def button(update: Update, context):
     # Handle back to main menu
     elif query.data == "main_menu":
         keyboard = [
-            [InlineKeyboardButton("1. शैक्षणिक योजना", callback_data="cat1")],
-            [InlineKeyboardButton("2. घरकुल/पायाभूत सुविधा बाबतच्या योजना", callback_data="cat2")],
-            [InlineKeyboardButton("3. भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना", callback_data="cat3")],
-            [InlineKeyboardButton("4. सामाजिक योजना", callback_data="cat4")],
-            [InlineKeyboardButton("5. कौशल्य विकास व अर्थसाहाय्याच्या योजना", callback_data="cat5")],
+            [InlineKeyboardButton("1", callback_data="cat1")],
+            [InlineKeyboardButton("2", callback_data="cat2")],
+            [InlineKeyboardButton("3", callback_data="cat3")],
+            [InlineKeyboardButton("4", callback_data="cat4")],
+            [InlineKeyboardButton("5", callback_data="cat5")],
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await query.message.reply_text('विभागा अंतर्गत राबविल्या जाणाऱ्या योजना:\n\nखालीलपैकी एक योजना निवडा:', reply_markup=reply_markup)
+        response = "विभागा अंतर्गत राबविल्या जाणाऱ्या योजना:\n\n"
+        response += "1. शैक्षणिक योजना\n"
+        response += "2. घरकुल/पायाभूत सुविधा बाबतच्या योजना\n"
+        response += "3. भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना\n"
+        response += "4. सामाजिक योजना\n"
+        response += "5. कौशल्य विकास व अर्थसाहाय्याच्या योजना\n\n"
+        response += "खालीलपैकी एक योजना निवडा:"
+        await query.message.reply_text(response, reply_markup=reply_markup)
 
     # Handle subcategory selection
     else:
@@ -205,7 +212,7 @@ async def button(update: Update, context):
             items = subcat_data.get("items", [])
             for idx, item in enumerate(items, 1):
                 response += f"{idx}. {item['name']}\n"
-                keyboard.append([InlineKeyboardButton(f"{idx}. {item['name']}", callback_data=f"{query.data}:item:{idx-1}")])
+                keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:item:{idx-1}")])
 
             keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}")])
             reply_markup = InlineKeyboardMarkup(keyboard)
@@ -217,23 +224,21 @@ async def button(update: Update, context):
         subcat_idx = int(subcat_idx)
         item_idx = int(item_idx)
         category = SCHEMES[category_id]
-        subcat = category["subcategories"][subcat_idx]
+        items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
+        item_data = items[item_idx]
         
         if item_type == "item":
-            items = subcat.get("items", [])
-            item_data = items[item_idx]
-            keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")]]
+            keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
             reply_markup = InlineKeyboardMarkup(keyboard)
             await query.message.reply_text(f"{item_data['name']}:\n{item_data['details']}", reply_markup=reply_markup)
         elif item_type == "corp":
-            items = subcat.get("items", [])
             corp_data = items[item_idx]
             if "subitems" in corp_data:
                 response = f"{corp_data['name']}:\n\n"
                 keyboard = []
                 for idx, subitem in enumerate(corp_data["subitems"], 1):
                     response += f"{idx}. {subitem['name']}\n"
-                    keyboard.append([InlineKeyboardButton(f"{idx}. {subitem['name']}", callback_data=f"{query.data}:subitem:{idx-1}")])
+                    keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:subitem:{idx-1}")])
                 keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
                 reply_markup = InlineKeyboardMarkup(keyboard)
                 await query.message.reply_text(response, reply_markup=reply_markup)
