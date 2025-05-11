@@ -13,9 +13,10 @@ logger = logging.getLogger(__name__)
 
 # Load environment variables
 TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+WEBHOOK_URL = os.getenv('WEBHOOK_URL')
 PORT = int(os.getenv('PORT', 8000))
 
-# Scheme index (same as before)
+# Scheme index
 SCHEMES = {
     "cat1": {
         "name": "शैक्षणिक योजना",
@@ -267,6 +268,9 @@ def main():
     if not TOKEN:
         logger.error("TELEGRAM_BOT_TOKEN is not set in environment variables")
         raise ValueError("TELEGRAM_BOT_TOKEN is not set")
+    if not WEBHOOK_URL:
+        logger.error("WEBHOOK_URL is not set in environment variables")
+        raise ValueError("WEBHOOK_URL is not set")
 
     # Create the Application with the bot's token
     app = ApplicationBuilder().token(TOKEN).build()
@@ -277,9 +281,14 @@ def main():
     app.add_handler(CallbackQueryHandler(button))
     app.add_error_handler(error_handler)
 
-    # Start the bot with polling
-    logger.info("Starting bot with polling")
-    app.run_polling()
+    # Start the webhook
+    logger.info(f"Starting webhook on port {PORT} with URL {WEBHOOK_URL}")
+    app.run_webhook(
+        listen="0.0.0.0",
+        port=PORT,
+        url_path=TOKEN,
+        webhook_url=f"{WEBHOOK_URL}{TOKEN}"
+    )
 
     logger.info("Bot is running...")
 
