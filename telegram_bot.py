@@ -366,7 +366,7 @@ async def button(update: Update, context):
             await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
     # Handle individual item selection (schemes, institutions, corporations)
-   elif len(parts) == 4:
+        elif len(parts) == 4:
             category_id, subcat_idx, item_type, item_idx = query.data.split(":", 3)
             subcat_idx = int(subcat_idx)
             item_idx = int(item_idx)
