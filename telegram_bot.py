@@ -295,13 +295,19 @@ async def handle_hi(update: Update, context):
         await start(update, context)
 
 # Callback query handler for menu navigation
-# Callback query handler for menu navigation
-async def button(update: Update, context):
+# Helper function to send images  
+
+async def send_images_if_any(context, chat_id, data, reply_markup=None):
+    if "images" in data:
+        for image_url in data["images"]:
+            await context.bot.send_photo(chat_id=chat_id, photo=image_url, reply_markup=reply_markup)
+
+# Main button callback handler
+async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
     logger.info(f"Received callback query with data: {query.data}")
 
-    # Handle main category selection
     if query.data in SCHEMES:
         category = SCHEMES[query.data]
         category_name = category["name"]
@@ -309,21 +315,19 @@ async def button(update: Update, context):
         keyboard = []
 
         if "subcategories" in category:
-            subcategories = category["subcategories"]
-            for idx, subcat in enumerate(subcategories, 1):
+            for idx, subcat in enumerate(category["subcategories"], 1):
                 response += f"{idx}. {subcat['name']}\n"
                 keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:{idx-1}")])
         else:
-            items = category["items"]
-            for idx, item in enumerate(items, 1):
+            for idx, item in enumerate(category["items"], 1):
                 response += f"{idx}. {item['name']}\n"
                 keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:item:{idx-1}")])
 
         keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data="main_menu")])
         reply_markup = InlineKeyboardMarkup(keyboard)
         await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+        await send_images_if_any(context, query.message.chat_id, category, reply_markup)
 
-    # Handle back to main menu
     elif query.data == "main_menu":
         keyboard = [
             [InlineKeyboardButton("1", callback_data="cat1")],
@@ -333,16 +337,17 @@ async def button(update: Update, context):
             [InlineKeyboardButton("5", callback_data="cat5")],
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        response = "विभागा अंतर्गत राबविल्या जाणाऱ्या योजना:\n\n"
-        response += "1. शैक्षणिक योजना\n"
-        response += "2. घरकुल/पायाभूत सुविधा बाबतच्या योजना\n"
-        response += "3. भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना\n"
-        response += "4. सामाजिक योजना\n"
-        response += "5. कौशल्य विकास व अर्थसाहाय्याच्या योजना\n\n"
-        response += "खालीलपैकी एक योजना निवडा:"
+        response = (
+            "विभागा अंतर्गत राबविल्या जाणाऱ्या योजना:\n\n"
+            "1. शैक्षणिक योजना\n"
+            "2. घरकुल/पायाभूत सुविधा बाबतच्या योजना\n"
+            "3. भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना\n"
+            "4. सामाजिक योजना\n"
+            "5. कौशल्य विकास व अर्थसाहाय्याच्या योजना\n\n"
+            "खालीलपैकी एक योजना निवडा:"
+        )
         await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
-    # Handle deeper interactions
     else:
         parts = query.data.split(":")
 
@@ -351,26 +356,21 @@ async def button(update: Update, context):
             subcat_idx = int(subcat_idx)
             category = SCHEMES[category_id]
             subcat_data = category["subcategories"][subcat_idx]
-            subcat_name = subcat_data["name"]
-            response = f"{subcat_name}:\n\n"
+            response = f"{subcat_data['name']}:\n\n"
 
             if "लाभ घेणारा प्रवर्ग" in subcat_data:
                 response += f"(लाभ घेणारा प्रवर्ग = {subcat_data['लाभ घेणारा प्रवर्ग']})\n\n"
 
             keyboard = []
-            items = subcat_data.get("items", [])
-            for idx, item in enumerate(items, 1):
+            for idx, item in enumerate(subcat_data.get("items", []), 1):
                 response += f"{idx}. {item['name']}\n"
                 keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:item:{idx-1}")])
 
             keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}")])
             reply_markup = InlineKeyboardMarkup(keyboard)
             await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+            await send_images_if_any(context, query.message.chat_id, subcat_data, reply_markup)
 
-            if "images" in subcat_data:
-                for image_url in subcat_data["images"]:
-                    await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
-                    
         elif len(parts) == 4:
             category_id, subcat_idx, item_type, item_idx = parts
             subcat_idx = int(subcat_idx)
@@ -394,10 +394,7 @@ async def button(update: Update, context):
                         f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
                         reply_markup=reply_markup
                     )
-                    if "images" in item_data:
-                        for image_url in item_data["images"]:
-                            await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
-
+                    await send_images_if_any(context, query.message.chat_id, item_data, reply_markup)
                 else:
                     keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
                     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -406,10 +403,8 @@ async def button(update: Update, context):
                         reply_markup=reply_markup,
                         parse_mode="Markdown"
                     )
-                    if "images" in item_data:
-                        for image_url in item_data["images"]:
-                            await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
-                   
+                    await send_images_if_any(context, query.message.chat_id, item_data, reply_markup)
+
         elif len(parts) == 5:
             category_id, subcat_idx, item_type, item_idx, subitem_idx = parts
             subcat_idx = int(subcat_idx)
@@ -428,9 +423,7 @@ async def button(update: Update, context):
                     reply_markup=reply_markup,
                     parse_mode="Markdown"
                 )
-                if "images" in corp_data:
-                        for image_url in corp_data["images"]:
-                            await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
+                await send_images_if_any(context, query.message.chat_id, subitem_data, reply_markup)
 
         elif len(parts) == 6:
             category_id, subcat_idx, _, corp_idx, _, subitem_idx = parts
@@ -449,9 +442,7 @@ async def button(update: Update, context):
                 reply_markup=reply_markup,
                 parse_mode="Markdown"
             )
-            if "images" in subitem_data:
-                    for image_url in subitem_data["images"]:
-                        await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
+            await send_images_if_any(context, query.message.chat_id, subitem_data, reply_markup)
 # Error handler
 async def error_handler(update: Update, context):
     logger.error(f"Update {update} caused error: {context.error}")
