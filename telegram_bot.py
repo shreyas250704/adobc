@@ -86,7 +86,101 @@ SCHEMES = {
                 "name": "शिष्यवृत्ती",
                 "लाभ घेणारा प्रवर्ग": "इतर मागास वर्ग व VJNT व SBC",
                 "items": [
-                    {"name": "मॅट्रिक पूर्व शिष्यवृत्ती (Pre Matric Scholarship)", "details": "इतर मागास वर्ग, VJNT आणि SBC प्रवर्गातील विद्यार्थ्यांना मॅट्रिकपूर्व शिक्षणासाठी शिष्यवृत्ती."},
+                    {
+                        "name": "मॅट्रिकपूर्व शिष्यवृत्ती (Pre Matric Scholarship)",
+                        "subitems": [
+                            {
+                                "name": "इ. ८वी ते १०वी मध्ये शिकणाऱ्या विजाभज व विमाप्र मुलींना सावित्रीबाई फुले शिष्यवृत्ती",
+                                "details": (
+                                    "मॅट्रीकपूर्व शिष्यवृत्ती योजना अंतर्गत इयत्ता ८वी ते १०वी मध्ये शिकणाऱ्या विजाभज व विमाप्र मुलींना सावित्रीबाई फुले शिष्यवृत्ती योजना लागू करण्यात आली आहे. माध्यमिक शाळेत शिकणाऱ्या विजाभज व विमाप्र वर्गातील विद्यार्थ्यांच्या गळतीचे प्रमाण कमी व्हावे, यासाठी राज्य शासनाने शासन निर्णय क्रमांक इमाव-२००३/प्र.क्र.२०१/मावक-३, दि. २५.७.२००३ अन्वये सन २००३-०४ या शैक्षणिक वर्षापासून ही योजना लागू केलेली आहे. तसेच शासन निर्णय क्रमांक पुरक-२०२२/प्र.क्र.९/शिक्षण-२, दि. २४ मार्च २०२३ अन्वये सुधारीत दराबाबतचा शासन निर्णय निर्गमित झाला आहे.\n\n"
+                                    "**योजनेच्या अटी व शर्ती:**\n"
+                                    "१. विद्यार्थिनी ही विजाभज व विमाप्र संवर्गातील असावी.\n"
+                                    "२. विद्यार्थिनीने शासनमान्य माध्यमिक शाळेत प्रवेश घेतलेला असावा व ती इयत्ता ८वी ते १०वी पर्यंत नियमित वर्गात शिकत असावी.\n"
+                                    "३. उत्पन्नाची अट नाही.\n\n"
+                                    "**लाभाचे स्वरूप:**\n"
+                                    "इयत्ता ८वी ते १०वी मध्ये शिकणाऱ्या सदर प्रवर्गातील विद्यार्थिनींना यापूर्वी दरमहा रु. १००/- प्रमाणे १० महिन्यांसाठी रु. १०००/- संबंधित शाळेमार्फत, त्यांचे उत्पन्न व गुणांची अट लक्षात न घेता ही शिष्यवृत्ती देण्यात येत होती. परंतु शासन निर्णय दि. २४ मार्च २०२३ नुसार सुधारीत दर लागू करण्यात आले आहेत. त्यानुसार आता दरमहा रु. ३००/- प्रमाणे १० महिन्यांसाठी रु. ३०००/- संबंधित शाळेमार्फत, त्यांचे उत्पन्न व गुणांची अट लक्षात न घेता ही शिष्यवृत्ती देण्यात येते.\n\n"
+                                    "**संपर्क:**\n"
+                                    "१. संबंधित जिल्हा समाज कल्याण अधिकारी, जिल्हा परिषद, समाज कल्याण.\n"
+                                    "२. संबंधित शाळेचे मुख्याध्यापक."
+                                )
+                            },
+                            {
+                                "name": "इ. ८वी ते १०वी मध्ये शिकणाऱ्या इतर मागास मुलींना सावित्रीबाई फुले शिष्यवृत्ती",
+                                "details": (
+                                    "शासन निर्णय क्रमांक इमाव-२००३/प्र.क्र.२०१/मावक-३, दि. २५.७.२००३ अन्वये सन २००३-०४ या शैक्षणिक वर्षापासून ही योजना लागू केलेली आहे. तसेच शासन निर्णय क्रमांक पुरक-२०२२/प्र.क्र.९/शिक्षण-२, दि. २४ मार्च २०२३ अन्वये सुधारीत दराबाबतचा शासन निर्णय निर्गमित झाला आहे.\n\n"
+                                    "**लाभाचे स्वरूप:**\n"
+                                    "इयत्ता ८वी ते १०वी मध्ये शिकणाऱ्या सदर प्रवर्गातील विद्यार्थिनींना यापूर्वी दरमहा रु. १००/- प्रमाणे १० महिन्यांसाठी रु. १०००/- संबंधित शाळेमार्फत, त्यांचे उत्पन्न व गुणांची अट लक्षात न घेता ही शिष्यवृत्ती देण्यात येत होती. परंतु शासन निर्णय दि. २४ मार्च २०२३ नुसार सुधारीत दर लागू करण्यात आले आहेत. त्यानुसार आता दरमहा रु. ३००/- प्रमाणे १० महिन्यांसाठी रु. ३०००/- संबंधित शाळेमार्फत, त्यांचे उत्पन्न व गुणांची अट लक्षात न घेता ही शिष्यवृत्ती देण्यात येते.\n\n"
+                                    "**संपर्क:**\n"
+                                    "१. संबंधित जिल्हा समाज कल्याण अधिकारी, जिल्हा परिषद, समाज कल्याण.\n"
+                                    "२. संबंधित शाळेचे मुख्याध्यापक."
+                                )
+                            },
+                            {
+                                "name": "माध्यमिक शाळेत शिकत असलेल्या विजाभज/विमाप्र विद्यार्थ्यांना गुणवत्ता शिष्यवृत्ती",
+                                "details": (
+                                    "शासन निर्णय दिनांक २९ ऑगस्ट १९६६ अन्वये ही योजना विजाभज विद्यार्थ्यांना लागू करण्यात आली. तसेच शासन निर्णय दिनांक २९ ऑक्टोबर १९९६ अन्वये विमाप्र विद्यार्थ्यांसाठी ही योजना लागू करण्यात आली आहे. माध्यमिक शाळेतील हुशार व गुणवंत विद्यार्थ्यांना प्रोत्साहन देण्याकरिता ही योजना सुरू करण्यात आली आहे.\n\n"
+                                    "**योजनेच्या अटी व शर्ती:**\n"
+                                    "१. विद्यार्थी विजाभज/विमाप्र या प्रवर्गातील असावा.\n"
+                                    "२. विद्यार्थी इयत्ता ५वी ते १०वी मध्ये शिकणारा असावा.\n"
+                                    "३. गतवर्षी वार्षिक परीक्षेत विद्यार्थ्यांना ५० टक्के पेक्षा जास्त गुण घेऊन विद्यार्थी वर्गात प्रथम किंवा दृतीय क्रमांकाने पास झालेला असावा.\n\n"
+                                    "**लाभाचे स्वरूप:**\n"
+                                    "इयत्ता ५वी ते ७वी मध्ये शिकणाऱ्या विद्यार्थ्यांना दरमहा रु. २०/- प्रमाणे १० महिन्यांसाठी रु. २००/- शिष्यवृत्ती दिली जाते. तसेच इयत्ता ८वी ते १०वी मध्ये शिकणाऱ्या विद्यार्थ्यांना दरमहा रु. ४०/- प्रमाणे १० महिन्यांसाठी रु. ४००/- शिष्यवृत्ती दिली जाते.\n\n"
+                                    "**संपर्क:**\n"
+                                    "संबंधित शाळेच्या मुख्याध्यापकांनी पात्र विद्यार्थ्यांचे प्रस्ताव संबंधित जिल्हा समाज कल्याण अधिकारी, जिल्हा परिषद कार्यालयास सादर करावेत. बृहन्मुंबईसाठी सहायक संचालक, इतर मागास बहुजन कल्याण विभाग."
+                                )
+                            },
+                            {
+                                "name": "इयत्ता ५वी ते ७वी मध्ये शिकणाऱ्या इतर मागास विद्यार्थिनींना सावित्रीबाई फुले शिष्यवृत्ती",
+                                "details": (
+                                    "शासन निर्णय प्र.क.२८३/शिक्षण-२, दिनांक ३० जानेवारी २०१९ पासून इतर मागास विद्यार्थिनींना ही योजना लागू करण्यात आली आहे. मागासवर्गीय विद्यार्थिनींचे गळतीचे प्रमाण कमी करण्यासाठी प्रोत्साहनपर अनुदान म्हणून शिष्यवृत्ती दिली जाते.\n\n"
+                                    "**योजनेच्या अटी व शर्ती:**\n"
+                                    "१. विद्यार्थिनी इतर मागास प्रवर्गातील असावी.\n"
+                                    "२. विद्यार्थिनी इयत्ता ५वी ते ७वी मध्ये शिकणारी असावी.\n"
+                                    "३. विद्यार्थिनी ही शासनमान्य शाळेत नियमित शिकणारी असावी.\n\n"
+                                    "**लाभाचे स्वरूप:**\n"
+                                    "प्रति विद्यार्थिनीस यापूर्वी दरमहा रु. ६०/- प्रमाणे १० महिन्यांसाठी रु. ६००/- ही शिष्यवृत्तीची रक्कम संबंधित लाभार्थ्यास अदा केली जात होती. परंतु शासन निर्णय दि. २४ मार्च २०२३ नुसार सुधारीत दर लागू करण्यात आले आहेत. त्यानुसार आता दरमहा रु. २५०/- प्रमाणे १० महिन्यांसाठी रु. २५००/- संबंधित शाळेमार्फत, त्यांचे उत्पन्न व गुणांची अट लक्षात न घेता ही शिष्यवृत्ती देण्यात येते.\n\n"
+                                    "**संपर्क:**\n"
+                                    "या योजनेचे पात्र विद्यार्थिनीचे अर्ज भरून संबंधित जिल्हा समाज कल्याण अधिकारी, जिल्हा परिषद यांचेकडे सादर करावेत."
+                                )
+                            },
+                            {
+                                "name": "सैनिकी शाळेत शिकणाऱ्या विद्यार्थ्यांना शिष्यवृत्ती",
+                                "details": (
+                                    "विजाभज विद्यार्थ्यांना शासन निर्णय क्रमांक इबीसी-१०७४/५६४/का-५, दि. ६ ऑगस्ट १९७६ अन्वये सदर योजना लागू करण्यात आली आहे. याच धर्तीवर शासन निर्णय क्रमांक संकिर्ण-२००२/प्र.क्र.३७१/मावक-३, दि. ५ ऑगस्ट २००३ अन्वये सदर योजना विमाप्र विद्यार्थ्यांना शैक्षणिक वर्ष २००३-२००४ पासून लागू केलेली आहे. शासन निर्णय क्रमांक इबीसी-२००३/प्र.क्र.१८४/मावक-२, दि. १७/९/२००३ अन्वये रु. १५०००/- वार्षिक शुल्क निश्चित करण्यात आले आहे.\n\n"
+                                    "सैनिकी शाळेत शिक्षण घेणाऱ्या विजाभज/विमाप्र विद्यार्थ्यांनी प्रशिक्षण घेऊन भारतीय सैन्य दलामध्ये प्रवेश घेण्यासाठी प्रोत्साहन मिळण्यासाठी ही योजना सुरू करण्यात आली आहे.\n\n"
+                                    "**लाभाचे स्वरूप:**\n"
+                                    "सातारा सैनिक शाळा, भोसला मिलिटरी स्कूल नाशिक, एसएसपीएमएस सैनिक शाळा पुणे या ३ शाळांतील विजाभज व विमाप्र विद्यार्थ्यांना भोजन, कपडे, निवास, शिक्षण फी व परीक्षा फी, क्रीडा इत्यादींसाठी राज्य शासन मान्यता प्राप्त सैनिकी शाळेतील प्रवेशितास प्रति विद्यार्थी वार्षिक रु. १५०००/- पर्यंत संबंधित सैनिकी शाळेस अदा केले जातात.\n\n"
+                                    "**संपर्क:**\n"
+                                    "संबंधित जिल्ह्याचे सहायक संचालक, इतर मागास बहुजन कल्याण विभाग व संबंधित शाळा/महाविद्यालयाचे प्राचार्य."
+                                )
+                            },
+                            {
+                                "name": "माध्यमिक शाळेत शिकत असलेल्या मागासवर्गीय विद्यार्थ्यांना शिष्यवृत्ती (फक्त मुंबईकरिता)",
+                                "details": (
+                                    "सदर योजना शासन निर्णय दि. २९.१०.१९८६ अन्वये विमाप्र विद्यार्थ्यांसाठी लागू करण्यात आली आहे.\n\n"
+                                    "**योजनेच्या अटी व शर्ती:**\n"
+                                    "१. विद्यार्थी मान्यताप्राप्त शाळेत शिकत असलेला असावा.\n"
+                                    "२. इयत्ता ५वी ते १०वी पर्यंतच्या वार्षिक परीक्षेत ५० टक्के पेक्षा जास्त गुण घेऊन तो वर्गामध्ये प्रथम किंवा दृतीय क्रमांकाने उत्तीर्ण झालेला असावा.\n"
+                                    "३. तो विजाभज व विमाप्र प्रवर्गातील असावा.\n\n"
+                                    "**लाभाचे स्वरूप:**\n"
+                                    "सदर विद्यार्थ्यास इयत्ता ५वी ते ७वी दरमहा रु. २०/- प्रमाणे १० महिन्यांसाठी रु. २००/- व इयत्ता ८वी ते १०वी दरमहा रु. ४०/- प्रमाणे १० महिन्यांसाठी रु. ४००/- प्रति विद्यार्थी शिष्यवृत्ती देण्यात येते."
+                                )
+                            },
+                            {
+                                "name": "इयत्ता १ली ते १०वी मध्ये शिकत असणाऱ्या विमुक्त जाती व भटक्या जमाती (DNT) विद्यार्थ्यांना डॉ. आंबेडकर शिष्यवृत्ती",
+                                "details": (
+                                    "शासन निर्णय क्रमांक शिष्यवृत्ती-२०१८/प्र.क्र.४८/शिक्षण, दि. २७ मे २०१९ अन्वये केंद्र शासनाची डी.एन.टी. विद्यार्थ्यांसाठी डॉ. आंबेडकर मॅट्रीकपूर्व योजना सुरू करण्यात आली.\n\n"
+                                    "**लाभाचे स्वरूप:**\n"
+                                    "सदर योजनेअंतर्गत शिष्यवृत्ती व इतर अनुदानाचे दर केंद्र हिस्सा ७५ टक्के व राज्य हिस्सा २५ टक्के याप्रमाणे आहेत.\n\n"
+                                    "**संपर्क:**\n"
+                                    "संबंधित जिल्ह्याचे जिल्हा समाज कल्याण अधिकारी, जिल्हा परिषद व संबंधित जिल्ह्याचे सहायक संचालक, इतर मागास बहुजन कल्याण विभाग."
+                                ),
+                                "images": [
+                                    "https://drive.google.com/uc?export=view&id=1Lza8m6-7fXey866jIueuU6ax_U5n_55N"  # Table image for the seventh sub-scheme
+                                ]
+                            }
+                        ]
+                    },
                     {"name": "मॅट्रिकोत्तर शिष्यवृत्ती (Post Matric Scholarship)", "details": "मॅट्रिकोत्तर शिक्षण घेणाऱ्या विद्यार्थ्यांसाठी शिष्यवृत्ती योजना."},
                     {"name": "परदेशात उच्च शिक्षणासाठी शिष्यवृत्ती योजना", "details": "परदेशात उच्च शिक्षण घेण्यासाठी आर्थिक सहाय्य देणारी शिष्यवृत्ती योजना."}
                 ]
@@ -272,48 +366,88 @@ async def button(update: Update, context):
             await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
     # Handle individual item selection (schemes, institutions, corporations)
-    if len(query.data.split(":")) == 4:
-        category_id, subcat_idx, item_type, item_idx = query.data.split(":", 3)
-        subcat_idx = int(subcat_idx)
-        item_idx = int(item_idx)
-        category = SCHEMES[category_id]
-        items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
-        item_data = items[item_idx]
-        
-        if item_type == "item":
-            keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
-            reply_markup = InlineKeyboardMarkup(keyboard)
-            # Send the text description
-            await query.message.reply_text(f"{item_data['name']}:\n{item_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
-            # Send images if they exist
-            if "images" in item_data:
-                for image_url in item_data["images"]:
-                    await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
-        elif item_type == "corp":
-            corp_data = items[item_idx]
-            if "subitems" in corp_data:
-                response = f"{corp_data['name']}:\n\n"
-                keyboard = []
-                for idx, subitem in enumerate(corp_data["subitems"], 1):
-                    response += f"{idx}. {subitem['name']}\n"
-                    keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:subitem:{idx-1}")])
-                keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
-                reply_markup = InlineKeyboardMarkup(keyboard)
-                await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+   elif len(parts) == 4:
+            category_id, subcat_idx, item_type, item_idx = query.data.split(":", 3)
+            subcat_idx = int(subcat_idx)
+            item_idx = int(item_idx)
+            category = SCHEMES[category_id]
+            items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
+            item_data = items[item_idx]
 
-    # Handle subitem (subcorporation) selection
-    if len(query.data.split(":")) == 6:
-        category_id, subcat_idx, _, corp_idx, _, subitem_idx = query.data.split(":", 5)
-        subcat_idx = int(subcat_idx)
-        corp_idx = int(corp_idx)
-        subitem_idx = int(subitem_idx)
-        category = SCHEMES[category_id]
-        subcat = category["subcategories"][subcat_idx]
-        corp_data = subcat["items"][corp_idx]
-        subitem_data = corp_data["subitems"][subitem_idx]
-        keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:corp:{corp_idx}")]]
-        reply_markup = InlineKeyboardMarkup(keyboard)
-        await query.message.reply_text(f"{subitem_data['name']}:\n{subitem_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
+            if item_type == "item":
+                # Check if the item has subitems (e.g., मॅट्रिकपूर्व शिष्यवृत्ती)
+                if "subitems" in item_data:
+                    # Display subitems as a numbered text list
+                    subitems_text = "\n".join(f"{i+1}. {subitem['name']}" for i, subitem in enumerate(item_data["subitems"]))
+                    # Create numbered buttons for subitem selection
+                    keyboard = [
+                        [InlineKeyboardButton(str(i+1), callback_data=f"{category_id}:{subcat_idx}:subitem:{item_idx}:{i}")]
+                        for i in range(len(item_data["subitems"]))
+                    ]
+                    keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
+                    reply_markup = InlineKeyboardMarkup(keyboard)
+                    await query.message.reply_text(
+                        f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
+                        reply_markup=reply_markup,
+                        parse_mode="Markdown"
+                    )
+                else:
+                    # Display details if there are no subitems
+                    keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
+                    reply_markup = InlineKeyboardMarkup(keyboard)
+                    # Send the text description
+                    await query.message.reply_text(f"{item_data['name']}:\n{item_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
+                    # Send images if they exist
+                    if "images" in item_data:
+                        for image_url in item_data["images"]:
+                            await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
+
+            elif item_type == "corp":
+                corp_data = items[item_idx]
+                if "subitems" in corp_data:
+                    response = f"{corp_data['name']}:\n\n"
+                    keyboard = []
+                    for idx, subitem in enumerate(corp_data["subitems"], 1):
+                        response += f"{idx}. {subitem['name']}\n"
+                        keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:subitem:{idx-1}")])
+                    keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
+                    reply_markup = InlineKeyboardMarkup(keyboard)
+                    await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+
+        # Handle subitem (subcorporation or sub-subcategory) selection
+        elif len(parts) == 5:
+            category_id, subcat_idx, item_type, item_idx, subitem_idx = query.data.split(":", 4)
+            subcat_idx = int(subcat_idx)
+            item_idx = int(item_idx)
+            subitem_idx = int(subitem_idx)
+            category = SCHEMES[category_id]
+            items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
+            item_data = items[item_idx]
+            subitem_data = item_data["subitems"][subitem_idx]
+
+            if item_type == "subitem":
+                keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:item:{item_idx}")]]
+                reply_markup = InlineKeyboardMarkup(keyboard)
+                # Send the text description
+                await query.message.reply_text(f"{subitem_data['name']}:\n{subitem_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
+                # Send images if they exist
+                if "images" in subitem_data:
+                    for image_url in subitem_data["images"]:
+                        await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
+
+        # Handle sub-subitem (subcorporation) selection
+        elif len(parts) == 6:
+            category_id, subcat_idx, _, corp_idx, _, subitem_idx = query.data.split(":", 5)
+            subcat_idx = int(subcat_idx)
+            corp_idx = int(corp_idx)
+            subitem_idx = int(subitem_idx)
+            category = SCHEMES[category_id]
+            subcat = category["subcategories"][subcat_idx]
+            corp_data = subcat["items"][corp_idx]
+            subitem_data = corp_data["subitems"][subitem_idx]
+            keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:corp:{corp_idx}")]]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            await query.message.reply_text(f"{subitem_data['name']}:\n{subitem_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
 # Error handler
 async def error_handler(update: Update, context):
     logger.error(f"Update {update} caused error: {context.error}")
