@@ -18,39 +18,47 @@ PORT = int(os.getenv('PORT', 8000))
 
 # Scheme index (unchanged)
 SCHEMES = {
-    "1. शैक्षणिक योजना": {
-        "1. आश्रमशाळा": {
-            "लाभ घेणारा प्रवर्ग": "विमुक्त जाती, भटक्या जमाती व विशेष मागास प्रवर्ग",
-            "योजना": [
-                {"name": "विमुक्त जाती, भटक्या जमाती व विशेष मागास प्रवर्गासाठीच्या आश्रमशाळा", "details": "Placeholder: Details to be added"},
-                {"name": "ऊसतोड कामगारांच्या मुला मुलींसाठी निवासी आश्रम शाळा", "details": "Placeholder: Details to be added"},
-                {"name": "विद्यानिकेतन शाळा", "details": "Placeholder: Details to be added"}
-            ]
-        },
-        "2. शिष्यवृत्ती": {
-            "लाभ घेणारा प्रवर्ग": "इतर मागास वर्ग व VJNT व SBC",
-            "योजना": [
-                {"name": "मॅट्रिक पूर्व शिष्यवृत्ती (Pre Matric Scholarship)", "details": "Placeholder: Details to be added"},
-                {"name": "मॅट्रिकोत्तर शिष्यवृत्ती (Post Matric Scholarship)", "details": "Placeholder: Details to be added"},
-                {"name": "परदेशात उच्च शिक्षणासाठी शिष्यवृत्ती योजना", "details": "Placeholder: Details to be added"}
-            ]
-        },
-        "3. वसतिगृहे/आधार योजना": {
-            "लाभ घेणारा प्रवर्ग": "OBC, VJNT व SBC",
-            "योजना": [
-                {"name": "जिल्हानिहाय वसतिगृहे", "details": "Placeholder: Details to be added"},
-                {"name": "ज्ञानज्योती सावित्रीबाई फुले आधार योजना", "details": "Placeholder: Details to be added"}
-            ]
+    "cat1": {
+        "name": "शैक्षणिक योजना",
+        "subcategories": {
+            "subcat1": {
+                "name": "आश्रमशाळा",
+                "लाभ घेणारा प्रवर्ग": "विमुक्त जाती, भटक्या जमाती व विशेष मागास प्रवर्ग",
+                "योजना": [
+                    {"name": "विमुक्त जाती, भटक्या जमाती व विशेष मागास प्रवर्गासाठीच्या आश्रमशाळा", "details": "Placeholder: Details to be added"},
+                    {"name": "ऊसतोड कामगारांच्या मुला मुलींसाठी निवासी आश्रम शाळा", "details": "Placeholder: Details to be added"},
+                    {"name": "विद्यानिकेतन शाळा", "details": "Placeholder: Details to be added"}
+                ]
+            },
+            "subcat2": {
+                "name": "शिष्यवृत्ती",
+                "लाभ घेणारा प्रवर्ग": "इतर मागास वर्ग व VJNT व SBC",
+                "योजना": [
+                    {"name": "मॅट्रिक पूर्व शिष्यवृत्ती (Pre Matric Scholarship)", "details": "Placeholder: Details to be added"},
+                    {"name": "मॅट्रिकोत्तर शिष्यवृत्ती (Post Matric Scholarship)", "details": "Placeholder: Details to be added"},
+                    {"name": "परदेशात उच्च शिक्षणासाठी शिष्यवृत्ती योजना", "details": "Placeholder: Details to be added"}
+                ]
+            },
+            "subcat3": {
+                "name": "वसतिगृहे/आधार योजना",
+                "लाभ घेणारा प्रवर्ग": "OBC, VJNT व SBC",
+                "योजना": [
+                    {"name": "जिल्हानिहाय वसतिगृहे", "details": "Placeholder: Details to be added"},
+                    {"name": "ज्ञानज्योती सावित्रीबाई फुले आधार योजना", "details": "Placeholder: Details to be added"}
+                ]
+            }
         }
     },
-    "2. घरकुल/पायाभूत सुविधा बाबतच्या योजना": {
+    "cat2": {
+        "name": "घरकुल/पायाभूत सुविधा बाबतच्या योजना",
         "योजना": [
             {"name": "वसंतराव नाईक तांडा/वस्ती सुधार योजना", "details": "Placeholder: Details to be added"},
             {"name": "यशवंतराव चव्हाण मुक्त वसाहत योजना", "details": "Placeholder: Details to be added"},
             {"name": "मोदी आवाज घरकुल योजना", "details": "Placeholder: Details to be added"}
         ]
     },
-    "3. भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना": {
+    "cat3": {
+        "name": "भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना",
         "योजना": [
             {"name": "इंग्रजी माध्यमाच्या निवासी शाळेत प्रवेश", "details": "Placeholder: Details to be added"},
             {"name": "महसुली विभागाच्या मुख्यालयाच्या ठिकाणी वसतीगृह", "details": "Placeholder: Details to be added"},
@@ -67,14 +75,16 @@ SCHEMES = {
             {"name": "पावसाळ्यात चराईसाठी अनुदान", "details": "Placeholder: Details to be added"}
         ]
     },
-    "4. सामाजिक योजना": {
+    "cat4": {
+        "name": "सामाजिक योजना",
         "योजना": [
             {"name": "कन्यादान योजना", "details": "Placeholder: Details to be added"},
             {"name": "महात्मा बसवेश्वर सामाजिक समता शिवा पुरस्कार", "details": "Placeholder: Details to be added"},
             {"name": "स्व. वसंतराव नाईक गुणवत्ता पुरस्कार", "details": "Placeholder: Details to be added"}
         ]
     },
-    "5. कौशल्य विकास व अर्थसहाय्याच्या योजना": {
+    "cat5": {
+        "name": "कौशल्य विकास व अर्थसहाय्याच्या योजना",
         "संस्था": [
             {"name": "महात्मा ज्योतिबा फुले संशोधन व प्रशिक्षण संस्था (महाज्योती), नागपूर", "details": "Placeholder: Details to be added"},
             {"name": "महाराष्ट्र संशोधन उन्नती व प्रशिक्षण प्रबोधिनी (अमृत)", "details": "Placeholder: Details to be added"}
@@ -102,14 +112,19 @@ SCHEMES = {
 
 # Start command handler
 async def start(update: Update, context):
+    logger.info("Received /start command")
+    if not update.message:
+        logger.error("Update has no message object")
+        raise ValueError("Update has no message object")
     keyboard = [
-        [InlineKeyboardButton("शैक्षणिक योजना", callback_data="1. शैक्षणिक योजना")],
-        [InlineKeyboardButton("घरकुल/पायाभूत सुविधा", callback_data="2. घरकुल/पायाभूत सुविधा बाबतच्या योजना")],
-        [InlineKeyboardButton("धनगर समाजाच्या योजना", callback_data="3. भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना")],
-        [InlineKeyboardButton("सामाजिक योजना", callback_data="4. सामाजिक योजना")],
-        [InlineKeyboardButton("कौशल्य विकास व अर्थसहाय्य", callback_data="5. कौशल्य विकास व अर्थसहाय्याच्या योजना")],
+        [InlineKeyboardButton("शैक्षणिक योजना", callback_data="cat1")],
+        [InlineKeyboardButton("घरकुल/पायाभूत सुविधा", callback_data="cat2")],
+        [InlineKeyboardButton("धनगर समाजाच्या योजना", callback_data="cat3")],
+        [InlineKeyboardButton("सामाजिक योजना", callback_data="cat4")],
+        [InlineKeyboardButton("कौशल्य विकास व अर्थसहाय्य", callback_data="cat5")],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
+    logger.info("Sending reply with menu")
     await update.message.reply_text('खालीलपैकी एक योजना निवडा:', reply_markup=reply_markup)
     logger.info(f"User {update.effective_user.id} started the bot")
 
@@ -117,41 +132,59 @@ async def start(update: Update, context):
 async def button(update: Update, context):
     query = update.callback_query
     await query.answer()
+    logger.info(f"Received callback query with data: {query.data}")
 
     # Handle main category selection
     if query.data in SCHEMES:
         category = SCHEMES[query.data]
-        keyboard = []
-        for sub_category in category:
-            if sub_category != "लाभ घेणारा प्रवर्ग":
-                keyboard.append([InlineKeyboardButton(sub_category, callback_data=f"{query.data}:{sub_category}")])
-        reply_markup = InlineKeyboardMarkup(keyboard)
-        await query.message.reply_text(f"{query.data} अंतर्गत योजना:", reply_markup=reply_markup)
+        category_name = category["name"]
+        if "subcategories" in category:
+            keyboard = []
+            for subcat_id, subcat in category["subcategories"].items():
+                keyboard.append([InlineKeyboardButton(subcat["name"], callback_data=f"{query.data}:{subcat_id}")])
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            await query.message.reply_text(f"{category_name} अंतर्गत योजना:", reply_markup=reply_markup)
+        else:
+            schemes = category.get("योजना", [])
+            response = f"{category_name}:\n\n"
+            keyboard = []
+            for scheme in schemes:
+                response += f"- {scheme['name']}\n"
+                keyboard.append([InlineKeyboardButton(scheme['name'], callback_data=f"{query.data}:scheme:{scheme['name']}")])
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            await query.message.reply_text(response, reply_markup=reply_markup)
 
     # Handle sub-category selection
     else:
         parts = query.data.split(":", 1)
         if len(parts) == 2:
-            category, sub_category = parts
-            sub_cat_data = SCHEMES[category].get(sub_category, {}).get("योजना", SCHEMES[category].get(sub_category, []))
-            response = f"{sub_category}:\n\n"
+            category_id, subcat_id = parts
+            category = SCHEMES[category_id]
+            subcat_data = category["subcategories"][subcat_id]
+            subcat_name = subcat_data["name"]
+            response = f"{subcat_name}:\n\n"
             keyboard = []
-            for scheme in sub_cat_data:
-                if isinstance(scheme, dict):
-                    response += f"- {scheme['name']}\n"
-                    keyboard.append([InlineKeyboardButton(scheme['name'], callback_data=f"{query.data}:{scheme['name']}")])
-                else:
-                    response += f"- {scheme['name']}\n"
-                    keyboard.append([InlineKeyboardButton(scheme['name'], callback_data=f"{query.data}:{scheme['name']}")])
+            for scheme in subcat_data["योजना"]:
+                response += f"- {scheme['name']}\n"
+                keyboard.append([InlineKeyboardButton(scheme['name'], callback_data=f"{query.data}:scheme:{scheme['name']}")])
             reply_markup = InlineKeyboardMarkup(keyboard)
             await query.message.reply_text(response, reply_markup=reply_markup)
 
     # Handle individual scheme selection
-    if len(query.data.split(":")) == 3:
-        category, sub_category, scheme_name = query.data.split(":", 2)
-        scheme_data = next((s for s in SCHEMES[category][sub_category]["योजना"] if s["name"] == scheme_name), None)
-        if scheme_data:
-            await query.message.reply_text(f"{scheme_name}:\n{scheme_data['details']}")
+    if len(query.data.split(":")) == 4:
+        category_id, subcat_id, _, scheme_name = query.data.split(":", 3)
+        if subcat_id == "scheme":
+            category = SCHEMES[category_id]
+            schemes = category.get("योजना", [])
+            scheme_data = next((s for s in schemes if s["name"] == scheme_name), None)
+            if scheme_data:
+                await query.message.reply_text(f"{scheme_name}:\n{scheme_data['details']}")
+        else:
+            category = SCHEMES[category_id]
+            subcat = category["subcategories"][subcat_id]
+            scheme_data = next((s for s in subcat["योजना"] if s["name"] == scheme_name), None)
+            if scheme_data:
+                await query.message.reply_text(f"{scheme_name}:\n{scheme_data['details']}")
 
 # Error handler
 async def error_handler(update: Update, context):
