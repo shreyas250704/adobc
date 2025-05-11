@@ -279,6 +279,15 @@ SCHEMES = {
 }
 
 # Start command handler
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    keyboard = [
+        [InlineKeyboardButton(f"{i+1}. {cat['name']}", callback_data=f"{cat_id}")]
+        for i, (cat_id, cat) in enumerate(SCHEMES.items())
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.message.reply_text("नमस्ते! खालील योजनांमधून निवडा:", reply_markup=reply_markup)
+
+# Define the button handler
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
@@ -299,13 +308,19 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         category_id, subcat_idx = data
         subcat_idx = int(subcat_idx)
         subcategory = SCHEMES[category_id]["subcategories"][subcat_idx]
+        # Display items as a numbered text list
+        items_text = "\n".join(f"{i+1}. {item['name']}" for i, item in enumerate(subcategory["items"]))
+        # Create numbered buttons for selection
         keyboard = [
-            [InlineKeyboardButton(f"{i+1}. {item['name']}", callback_data=f"{category_id}:{subcat_idx}:item:{i}")]
-            for i, item in enumerate(subcategory["items"])
+            [InlineKeyboardButton(str(i+1), callback_data=f"{category_id}:{subcat_idx}:item:{i}")]
+            for i in range(len(subcategory["items"]))
         ]
         keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}")])
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await query.message.edit_text(f"{subcategory['name']}:\nनिवडा", reply_markup=reply_markup)
+        await query.message.edit_text(
+            f"{subcategory['name']}:\n\n{items_text}\n\nवरील योजनेपैकी एक निवडा:",
+            reply_markup=reply_markup
+        )
 
     elif len(data) == 4:  # Item selection (e.g., cat1:1:item:0 for मॅट्रिकपूर्व शिष्यवृत्ती)
         category_id, subcat_idx, item_type, item_idx = data
@@ -316,22 +331,32 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         item_data = items[item_idx]
 
         if item_type == "item":
-            # Check if the item has subitems (nested sub-subcategories)
+            # Check if the item has subitems (e.g., मॅट्रिकपूर्व शिष्यवृत्ती)
             if "subitems" in item_data:
+                # Display subitems as a numbered text list
+                subitems_text = "\n".join(f"{i+1}. {subitem['name']}" for i, subitem in enumerate(item_data["subitems"]))
+                # Create numbered buttons for subitem selection
                 keyboard = [
-                    [InlineKeyboardButton(f"{i+1}. {subitem['name']}", callback_data=f"{category_id}:{subcat_idx}:subitem:{item_idx}:{i}")]
-                    for i, subitem in enumerate(item_data["subitems"])
+                    [InlineKeyboardButton(str(i+1), callback_data=f"{category_id}:{subcat_idx}:subitem:{item_idx}:{i}")]
+                    for i in range(len(item_data["subitems"]))
                 ]
                 keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
                 reply_markup = InlineKeyboardMarkup(keyboard)
-                await query.message.edit_text(f"{item_data['name']}:\nनिवडा", reply_markup=reply_markup)
+                await query.message.edit_text(
+                    f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
+                    reply_markup=reply_markup
+                )
             else:
                 # Display details if there are no subitems
                 keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
                 reply_markup = InlineKeyboardMarkup(keyboard)
-                await query.message.reply_text(f"{item_data['name']}:\n{item_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
+                await query.message.reply_text(
+                    f"{item_data['name']}:\n{item_data['details']}",
+                    reply_markup=reply_markup,
+                    parse_mode="Markdown"
+                )
 
-    elif len(data) == 5:  # Sub-subcategory selection (e.g., cat1:1:subitem:0:0 for first sub-subcategory)
+    elif len(data) == 5:  # Sub-subcategory selection (e.g., cat1:1:subitem:0:0)
         category_id, subcat_idx, item_type, item_idx, subitem_idx = data
         subcat_idx = int(subcat_idx)
         item_idx = int(item_idx)
@@ -344,7 +369,11 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         if item_type == "subitem":
             keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:item:{item_idx}")]]
             reply_markup = InlineKeyboardMarkup(keyboard)
-            await query.message.reply_text(f"{subitem_data['name']}:\n{subitem_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
+            await query.message.reply_text(
+                f"{subitem_data['name']}:\n{subitem_data['details']}",
+                reply_markup=reply_markup,
+                parse_mode="Markdown"
+            )
     # Handle back to main menu
     elif query.data == "main_menu":
         keyboard = [
