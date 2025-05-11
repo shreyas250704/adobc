@@ -366,74 +366,58 @@ async def button(update: Update, context):
             await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
     # Handle individual item selection (schemes, institutions, corporations)
-        elif len(parts) == 4:
-            category_id, subcat_idx, item_type, item_idx = query.data.split(":", 3)
-            subcat_idx = int(subcat_idx)
-            item_idx = int(item_idx)
-            category = SCHEMES[category_id]
-            items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
-            item_data = items[item_idx]
-
-            if item_type == "item":
-                # Check if the item has subitems (e.g., मॅट्रिकपूर्व शिष्यवृत्ती)
-                if "subitems" in item_data:
-                    # Display subitems as a numbered text list
-                    subitems_text = "\n".join(f"{i+1}. {subitem['name']}" for i, subitem in enumerate(item_data["subitems"]))
-                    # Create numbered buttons for subitem selection
-                    keyboard = [
-                        [InlineKeyboardButton(str(i+1), callback_data=f"{category_id}:{subcat_idx}:subitem:{item_idx}:{i}")]
-                        for i in range(len(item_data["subitems"]))
-                    ]
-                    keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
+        elif len(data) == 4:  # Item selection (e.g., cat1:1:item:0 for मॅट्रिकपूर्व शिष्यवृत्ती)
+                category_id, subcat_idx, item_type, item_idx = data
+                subcat_idx = int(subcat_idx)
+                item_idx = int(item_idx)
+                category = SCHEMES[category_id]
+                items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
+                item_data = items[item_idx]
+        
+                if item_type == "item":
+                    # Check if the item has subitems (e.g., मॅट्रिकपूर्व शिष्यवृत्ती)
+                    if "subitems" in item_data:
+                        # Display subitems as a numbered text list
+                        subitems_text = "\n".join(f"{i+1}. {subitem['name']}" for i, subitem in enumerate(item_data["subitems"]))
+                        # Create numbered buttons for subitem selection
+                        keyboard = [
+                            [InlineKeyboardButton(str(i+1), callback_data=f"{category_id}:{subcat_idx}:subitem:{item_idx}:{i}")]
+                            for i in range(len(item_data["subitems"]))
+                        ]
+                        keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
+                        reply_markup = InlineKeyboardMarkup(keyboard)
+                        await query.message.edit_text(
+                            f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
+                            reply_markup=reply_markup
+                        )
+                    else:
+                        # Display details if there are no subitems
+                        keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
+                        reply_markup = InlineKeyboardMarkup(keyboard)
+                        await query.message.reply_text(
+                            f"{item_data['name']}:\n{item_data['details']}",
+                            reply_markup=reply_markup,
+                            parse_mode="Markdown"
+                        )
+        
+            elif len(data) == 5:  # Sub-subcategory selection (e.g., cat1:1:subitem:0:0)
+                category_id, subcat_idx, item_type, item_idx, subitem_idx = data
+                subcat_idx = int(subcat_idx)
+                item_idx = int(item_idx)
+                subitem_idx = int(subitem_idx)
+                category = SCHEMES[category_id]
+                items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
+                item_data = items[item_idx]
+                subitem_data = item_data["subitems"][subitem_idx]
+        
+                if item_type == "subitem":
+                    keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:item:{item_idx}")]]
                     reply_markup = InlineKeyboardMarkup(keyboard)
                     await query.message.reply_text(
-                        f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
+                        f"{subitem_data['name']}:\n{subitem_data['details']}",
                         reply_markup=reply_markup,
                         parse_mode="Markdown"
                     )
-                else:
-                    # Display details if there are no subitems
-                    keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
-                    reply_markup = InlineKeyboardMarkup(keyboard)
-                    # Send the text description
-                    await query.message.reply_text(f"{item_data['name']}:\n{item_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
-                    # Send images if they exist
-                    if "images" in item_data:
-                        for image_url in item_data["images"]:
-                            await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
-
-            elif item_type == "corp":
-                corp_data = items[item_idx]
-                if "subitems" in corp_data:
-                    response = f"{corp_data['name']}:\n\n"
-                    keyboard = []
-                    for idx, subitem in enumerate(corp_data["subitems"], 1):
-                        response += f"{idx}. {subitem['name']}\n"
-                        keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:subitem:{idx-1}")])
-                    keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
-                    reply_markup = InlineKeyboardMarkup(keyboard)
-                    await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
-
-        # Handle subitem (subcorporation or sub-subcategory) selection
-        elif len(parts) == 5:
-            category_id, subcat_idx, item_type, item_idx, subitem_idx = query.data.split(":", 4)
-            subcat_idx = int(subcat_idx)
-            item_idx = int(item_idx)
-            subitem_idx = int(subitem_idx)
-            category = SCHEMES[category_id]
-            items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
-            item_data = items[item_idx]
-            subitem_data = item_data["subitems"][subitem_idx]
-
-            if item_type == "subitem":
-                keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:item:{item_idx}")]]
-                reply_markup = InlineKeyboardMarkup(keyboard)
-                # Send the text description
-                await query.message.reply_text(f"{subitem_data['name']}:\n{subitem_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
-                # Send images if they exist
-                if "images" in subitem_data:
-                    for image_url in subitem_data["images"]:
-                        await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
 
         # Handle sub-subitem (subcorporation) selection
         elif len(parts) == 6:
