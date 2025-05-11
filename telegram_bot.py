@@ -394,7 +394,7 @@ async def button(update: Update, context):
                         f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
                         reply_markup=reply_markup
                     )
-                     if "images" in item_data:
+                    if "images" in item_data:
                         for image_url in item_data["images"]:
                             await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
 
