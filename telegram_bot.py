@@ -159,7 +159,7 @@ async def error_handler(update: Update, context):
     if update and update.message:
         await update.message.reply_text("काहीतरी चुकले. कृपया पुन्हा प्रयत्न करा.")
 
-async def main():
+def main():
     # Validate environment variables
     if not TOKEN:
         logger.error("TELEGRAM_BOT_TOKEN is not set in environment variables")
@@ -178,7 +178,7 @@ async def main():
 
     # Start the webhook
     logger.info(f"Starting webhook on port {PORT} with URL {WEBHOOK_URL}")
-    await app.run_webhook(
+    app.run_webhook(
         listen="0.0.0.0",
         port=PORT,
         url_path=TOKEN,
@@ -188,5 +188,4 @@ async def main():
     logger.info("Bot is running...")
 
 if __name__ == '__main__':
-    import asyncio
-    asyncio.run(main())
+    main()
