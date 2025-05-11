@@ -1,5 +1,5 @@
 import telegram
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, ApplicationBuilder, filters, ContextTypes
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, ApplicationBuilder, filters
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 import os
 import logging
@@ -25,18 +25,12 @@ SCHEMES = {
                 "name": "आश्रमशाळा",
                 "लाभ घेणारा प्रवर्ग": "विमुक्त जाती, भटक्या जमाती व विशेष मागास प्रवर्ग",
                 "items": [
-                    {
-                        "name": "विमुक्त जाती, भटक्या जमाती व विशेष मागास प्रवर्गासाठीच्या आश्रमशाळा",
-                        "details": (
-                            "आश्रमशाळा नाही, हे तर माझं दुसरं घर, जिथे माझ्या स्वप्नांना मिळते नवी नजर.\n\n"
-                            "महाराष्ट्रातील विमुक्त जाती, भटक्या जमाती या संवर्गातील बरेच लोक आपला उदरनिर्वाह करण्यासाठी एका ठिकाणाहून दुसऱ्या ठिकाणी भटकत असतात. त्यामुळे त्यांच्या मुलांना शिक्षणापासून वंचित राहावे लागते. "
-                            "या संवर्गातील मुला-मुलींसाठी मोफत निवास, भोजन, शालेय साहित्य व अंथरुण-पांघरुण इत्यादी सोयी उपलब्ध करून दिल्यास आणि व्यक्तिगत लक्ष दिल्यास त्यांच्या शिक्षणावर चांगला परिणाम होईल या दृष्टीकोनातून या मुलांसाठी खास स्वतंत्र आश्रमशाळा अनुदान देऊन "
-                            "स्वयंसेवी संस्थांमार्फत सुरू करण्याची योजना सन १९५३-५४ पासून अस्तित्वात आली.\n\n"
-                            "विमुक्त जाती, भटक्या जमाती कल्याण समितीने केलेल्या शिफारशी आणि वेळोवेळी समाविष्ट करण्यात आलेल्या जातींची संख्या लक्षात घेता, शासनाने निवासी आश्रमशाळा उघडण्यासाठी तयार केलेल्या बृहत आराखड्यानुसार आश्रमशाळांना मान्यता देण्यात येते. "
-                            "या आश्रमशाळांतून विद्यार्थ्यांना शासनाकडून मोफत निवास, भोजन, शालेय साहित्य, गणवेश (वर्षातून दोनदा) व अंथरुण-पांघरुण इत्यादी सोयी-सुविधा पुरविल्या जातात.\n\n"
-                            "महाराष्ट्रातील विमुक्त जाती, भटक्या जमाती तसेच ऊसतोड कामगारांच्या मुलांसाठी निवासी शिक्षण मिळावे आणि त्यांची सामाजिक, सांस्कृतिक आणि शैक्षणिक प्रगती व्हावी, या उद्देशाने खाजगी संस्थांना अनुदाने देऊन आश्रमशाळा योजना शासनाकडून राबविण्यात येते. "
-                            "राज्यात विजाभज प्रवर्गाच्या विद्यार्थ्यांसाठी ५७३० प्राथमिक आश्रमशाळा, २९७ माध्यमिक आश्रमशाळा व १४८ उच्च माध्यमिक आश्रमशाळा, त्याचप्रमाणे ऊसतोड कामगारांच्या मुला-मुलींसाठी बीड जिल्ह्यामध्ये ४ आश्रमशाळा चालविल्या जातात. "
-                            "याशिवाय लातूर विभागातील नांदेड जिल्ह्यात १ विद्यानिकेतन शाळा चालविली जाते.\n\n"
+                    {"name": "विमुक्त जाती, भटक्या जमाती व विशेष मागास प्रवर्गासाठीच्या आश्रमशाळा", 
+                     "details": 
+                     (      "आश्रमशाळा नाही, हे तर माझं दुसरं घर, जिथे माझ्या स्वप्नांना मिळते नवी नजर.\n\n"
+                            "महाराष्ट्रातील विमुक्त जाती, भटक्या जमाती या संवर्गातील बरेच लोक आपला उदरनिर्वाह करण्यासाठी एका ठिकाणाहून दुसऱ्या ठिकाणी भटकत असतात. त्यामुळे त्यांच्या मुलांना शिक्षणापासून वंचित राहावे लागते. या संवर्गातील मुला-मुलींसाठी मोफत निवास, भोजन, शालेय साहित्य व अंथरुण-पांघरुण इत्यादी सोयी उपलब्ध करून दिल्यास आणि व्यक्तिगत लक्ष दिल्यास त्यांच्या शिक्षणावर चांगला परिणाम होईल या दृष्टीकोनातून या मुलांसाठी खास स्वतंत्र आश्रमशाळा अनुदान देऊन स्वयंसेवी संस्थांमार्फत सुरू करण्याची योजना सन १९५३-५४ पासून अस्तित्वात आली.\n\n"
+                            "विमुक्त जाती, भटक्या जमाती कल्याण समितीने केलेल्या शिफारशी आणि वेळोवेळी समाविष्ट करण्यात आलेल्या जातींची संख्या लक्षात घेता, शासनाने निवासी आश्रमशाळा उघडण्यासाठी तयार केलेल्या बृहत आराखड्यानुसार आश्रमशाळांना मान्यता देण्यात येते. या आश्रमशाळांतून विद्यार्थ्यांना शासनाकडून मोफत निवास, भोजन, शालेय साहित्य, गणवेश (वर्षातून दोनदा) व अंथरुण-पांघरुण इत्यादी सोयी-सुविधा पुरविल्या जातात.\n\n"
+                            "महाराष्ट्रातील विमुक्त जाती, भटक्या जमाती तसेच ऊसतोड कामगारांच्या मुलांसाठी निवासी शिक्षण मिळावे आणि त्यांची सामाजिक, सांस्कृतिक आणि शैक्षणिक प्रगती व्हावी, या उद्देशाने खाजगी संस्थांना अनुदाने देऊन आश्रमशाळा योजना शासनाकडून राबविण्यात येते. राज्यात विजाभज प्रवर्गाच्या विद्यार्थ्यांसाठी ५७३० प्राथमिक आश्रमशाळा, २९७ माध्यमिक आश्रमशाळा व १४८ उच्च माध्यमिक आश्रमशाळा, त्याचप्रमाणे ऊसतोड कामगारांच्या मुला-मुलींसाठी बीड जिल्ह्यामध्ये ४ आश्रमशाळा चालविल्या जातात. याशिवाय लातूर विभागातील नांदेड जिल्ह्यात १ विद्यानिकेतन शाळा चालविली जाते.\n\n"
                             "**योजनेच्या अटी:**\n"
                             "१. स्वयंसेवी संस्था ही सोसायटी रजिस्ट्रेशन अँक्ट १८६० व मुंबई सार्वजनिक विश्वस्त कायदा अधिनियम १९५० अन्वये नोंदणीकृत असावी.\n"
                             "२. संस्थेवर तसेच संस्थेच्या पदाधिकाऱ्यांवर कोणत्याही प्रकारचा पोलीस गुन्हा सिद्ध होऊन शिक्षा झालेली नसावी.\n"
@@ -51,152 +45,41 @@ SCHEMES = {
                             "**सदर योजनेचा लाभ घेण्यासाठी संपर्क:**\n"
                             "संबंधित जिल्ह्याचे सहायक संचालक, इतर मागास बहुजन कल्याण विभाग\n"
                             "**शासन निर्णय क्रमांक:** विभशा-२00२/प्र.क्र.३९/मावक-६, दिनांक: १६ ऑक्टोबर, २00३, सामाजिक न्याय विशेष सहाय्य विभाग"
-                        )
+                     )
                     },
-                    {
-                        "name": "ऊसतोड कामगारांच्या मुला मुलींसाठी निवासी आश्रम शाळा",
-                        "details": (
-                            "राज्यातील उसतोड कामगारांना रोजगारासाठी सातत्याने भटकंती करावी लागते. यामुळे त्यांच्या मुला-मुलींच्या शिक्षणात स्थिरता राहात नाही. "
-                            "यास्तव उसतोड कामगारांच्या मुला-मुलींच्या शिक्षणात खंड पडू नये किंवा ते शिक्षणापासून वंचित राहू नयेत, त्यांना शिक्षणाची आवड निर्माण व्हावी व त्यांचा सर्वागिण विकास होऊन ते समाजाच्या मुख्य प्रवाहात यावेत, "
-                            "यासाठी सदर विद्यार्थ्यांना मोफत शिक्षण, भोजन, निवास एकाच छत्राखाली देण्याच्या उद्देशाने शासनाने सन १९९६ मध्ये केज व परळी वैजनाथ, जि. बीड येथे इयत्ता १ली ते ७वीच्या दोन प्राथमिक निवासी आश्रमशाळांना मंजूरी दिलेली आहे. "
-                            "तसेच २०१०-११ या वर्षापासून सदर आश्रमशाळांना इयत्ता ८वी ते १०वी चे वर्ग सुरू करण्यास मान्यता दिली आहे.\n\n"
+                    
+                    {"name": "ऊसतोड कामगारांच्या मुला मुलींसाठी निवासी आश्रम शाळा", 
+                     "details":
+                     (       "राज्यातील उसतोड कामगारांना रोजगारासाठी सातत्याने भटकंती करावी लागते. यामुळे त्यांच्या मुला-मुलींच्या शिक्षणात स्थिरता राहात नाही. यास्तव उसतोड कामगारांच्या मुला-मुलींच्या शिक्षणात खंड पडू नये किंवा ते शिक्षणापासून वंचित राहू नयेत, त्यांना शिक्षणाची आवड निर्माण व्हावी व त्यांचा सर्वागिण विकास होऊन ते समाजाच्या मुख्य प्रवाहात यावेत, यासाठी सदर विद्यार्थ्यांना मोफत शिक्षण, भोजन, निवास एकाच छत्राखाली देण्याच्या उद्देशाने शासनाने सन १९९६ मध्ये केज व परळी वैजनाथ, जि. बीड येथे इयत्ता १ली ते ७वीच्या दोन प्राथमिक निवासी आश्रमशाळांना मंजूरी दिलेली आहे. तसेच २०१०-११ या वर्षापासून सदर आश्रमशाळांना इयत्ता ८वी ते १०वी चे वर्ग सुरू करण्यास मान्यता दिली आहे.\n\n"
                             "**योजनेच्या अटी व शर्ती:**\n"
                             "१. या योजनेअंतर्गत लाभार्थी विद्यार्थी उसतोड कामगारांचा मुलगा/मुलगी असावा.\n"
                             "२. लाभधारक विद्यार्थी हा महाराष्ट्र राज्याचा रहिवासी असावा.\n\n"
                             "**लाभाचे स्वरूप:**\n"
                             "१. या योजनेंतर्गत उसतोड कामगारांच्या मुला-मुलींसाठी मोफत निवास, भोजन व शिक्षण देण्यात येते. त्याचप्रमाणे बिछाना साहित्य, क्रमिक पुस्तके, वह्या, शालेय साहित्य व वैद्यकीय सुविधा देखील मोफत देण्यात येतात.\n"
                             "२. या आश्रमशाळा चालविणाऱ्या स्वयंसेवी संस्थेस दरमहा दरडोई मान्य निवासी विद्यार्थ्यांसाठी रु.१५००/- प्रमाणे प्राथमिक शाळेस ११ महिन्यासाठी व माध्यमिक शाळेस १० महिन्यासाठी देण्यात येते.\n"
-                            "३. सदर आश्रमशाळेतील निवासी विद्यार्थ्यांवरील मान्यताप्राप्त शिक्षक व शिक्षकेत्तर कर्मचाऱ्यांच्या वेतनावर १०० टक्के अनुदान देण्यात येते. "
-                            "तसेच प्राथमिक आश्रमशाळेतील निवासी विद्यार्थ्यांवरील मान्यताप्राप्त शिक्षक कर्मचाऱ्यांच्या वार्षिक वेतनाच्या ८% व वसतिगृह विभागातील मान्यता प्राप्त कर्मचाऱ्याच्या वार्षिक वेतनाच्या ८% वेतनेतर अनुदान, "
-                            "तसेच माध्यमिक व उच्च माध्यमिक आश्रमशाळेतील निवासी विद्यार्थ्यांवरील मान्यता प्राप्त कर्मचाऱ्याच्या वार्षिक वेतनाच्या १२% आणि वसतिगृह विभागातील मान्यता प्राप्त कर्मचाऱ्याच्या वार्षिक वेतनाच्या ८% वेतनेतर अनुदान "
-                            "सहाव्या वेतन आयोगानुसार देण्यात येते.\n"
+                            "३. सदर आश्रमशाळेतील निवासी विद्यार्थ्यांवरील मान्यताप्राप्त शिक्षक व शिक्षकेत्तर कर्मचाऱ्यांच्या वेतनावर १०० टक्के अनुदान देण्यात येते. तसेच प्राथमिक आश्रमशाळेतीl निवासी विद्यार्थ्यांवरील मान्यताप्राप्त शिक्षक कर्मचाऱ्यांच्या वार्षिक वेतनाच्या ८% व वसतिगृह विभागातील मान्यता प्राप्त कर्मचाऱ्याच्या वार्षिक वेतनाच्या ८% वेतनेतर अनुदान, तसेच माध्यमिक व उच्च माध्यमिक आश्रमशाळेतीl निवासी विद्यार्थ्यांवरील मान्यता प्राप्त कर्मचाऱ्याच्या वार्षिक वेतनाच्या १२% आणि वसतिगृह विभागातील मान्यता प्राप्त कर्मचाऱ्याच्या वार्षिक वेतनाच्या ८% वेतनेतर अनुदान सहाव्या वेतन आयोगानुसार देण्यात येते.\n"
                             "४. सार्वजनिक बांधकाम विभागाने प्रमाणित केलेल्या भाड्याच्या ७५ टक्के अनुदान म्हणून देण्यात येते.\n\n"
                             "**सदर योजनेचा लाभ घेण्यासाठी संपर्क:**\n"
                             "सहायक संचालक बीड, इतर मागास बहुजन कल्याण विभाग\n\n"
                             "**शासन निर्णय क्रमांक:**\n"
                             "- उतोका-१९९५/प्र.क्र.१७७/मावक-६, दि. ७ मार्च, १९९६, सामाजिक न्याय विशेष व सहाय्य विभाग\n"
                             "- विजाभज-२०१४/प्र.क्र.१९८/विजाभज-२, दिनांक: ४ मार्च, २०१५, सामाजिक न्याय विशेष व सहाय्य विभाग"
-                        )
-                    },
-                    {"name": "विद्यानिकेतन शाळा", 
-                     "details": "महाराष्ट्रातील विजाभज विद्यार्थ्यांना निवासी शिक्षणाचा फायदा मिळावा आणि त्यांची शैक्षणिक, सामाजिक व आर्थिक उन्नती व्हावी, या उद्देशाने सन १९५३ पासून आश्रमशाळा योजना अंमलात आणली. तथापि विजाभज जमातीतील होतकरू व हुशार गुणवत्ता प्राप्त विद्यार्थ्यांसाठी स्वतंत्र विद्यानिकेतन योजना शासन निर्णय क्रमांक व्हीएएस/१०९०/प्र.क्र.१३५/मावक-६, दिनांक ०६/११/१९९५ अन्वये स्वयंसेवी संस्थांमार्फत विद्यानिकेतन सुरू करण्यास मंजुरी दिली. तसेच शासन निर्णय दिनांक ३१/७/१९९६ अन्वये विमुक्त जाती सेवा समिती, वसंतनगर कोटग्याळ, ता. मुखेड, जि. नांदेड या स्वयंसेवी संस्थेस विद्यानिकेतन सन १९९६-९७ पासून सुरू करण्यास मंजूरी देण्यात आली.\n\n"
-                            "सध्या कार्यरत असलेल्या विद्यानिकेतनमध्ये इयत्ता ५वी ते १२वी पर्यंतचे वर्ग सुरू असून ६४० विद्यार्थी शिक्षण घेत आहेत.\n\n"
-                            "**सदर योजनेचा लाभ घेण्यासाठी संपर्क:**\n"
-                            "सहायक संचालक, इतर मागास बहुजन कल्याण विभाग, नांदेड\n\n"
-                            "**शासन निर्णय क्रमांक:**\n"
-                            "व्हीएएस/१०९०/प्र.क्र.१३५/मावक-६, दिनांक ०६/११/१९९५, सामाजिक न्याय विशेष सहाय्य विभाग"
-                    }
-                ]
-            },
-           {
-                "name": "शिष्यवृत्ती",
-                "लाभ घेणारा प्रवर्ग": "विमुक्त जाती, भटक्या जमाती व विशेष मागास प्रवर्ग",
-                "items": [
-                    {
-                        "name": "मॅट्रिकपूर्व शिष्यवृत्ती",
-                        "subitems": [
-                            {
-                                "name": "इ. ८वी ते १०वी मध्ये शिकणाऱ्या विजाभज व विमाप्र मुलींना सावित्रीबाई फुले शिष्यवृत्ती",
-                                "details": (
-                                    "मॅट्रीकपूर्व शिष्यवृत्ती योजना अंतर्गत इयत्ता ८वी ते १०वी मध्ये शिकणाऱ्या विजाभज व विमाप्र मुलींना सावित्रीबाई फुले शिष्यवृत्ती योजना लागू करण्यात आली आहे. माध्यमिक शाळेत शिकणाऱ्या विजाभज व विमाप्र वर्गातील विद्यार्थ्यांच्या गळतीचे प्रमाण कमी व्हावे, यासाठी राज्य शासनाने शासन निर्णय क्रमांक इमाव-२००३/प्र.क्र.२०१/मावक-३, दि. २५.७.२००३ अन्वये सन २००३-०४ या शैक्षणिक वर्षापासून ही योजना लागू केलेली आहे. तसेच शासन निर्णय क्रमांक पुरक-२०२२/प्र.क्र.९/शिक्षण-२, दि. २४ मार्च २०२३ अन्वये सुधारीत दराबाबतचा शासन निर्णय निर्गमित झाला आहे.\n\n"
-                                    "**योजनेच्या अटी व शर्ती:**\n"
-                                    "१. विद्यार्थिनी ही विजाभज व विमाप्र संवर्गातील असावी.\n"
-                                    "२. विद्यार्थिनीने शासनमान्य माध्यमिक शाळेत प्रवेश घेतलेला असावा व ती इयत्ता ८वी ते १०वी पर्यंत नियमित वर्गात शिकत असावी.\n"
-                                    "३. उत्पन्नाची अट नाही.\n\n"
-                                    "**लाभाचे स्वरूप:**\n"
-                                    "इयत्ता ८वी ते १०वी मध्ये शिकणाऱ्या सदर प्रवर्गातील विद्यार्थिनींना यापूर्वी दरमहा रु. १००/- प्रमाणे १० महिन्यांसाठी रु. १०००/- संबंधित शाळेमार्फत, त्यांचे उत्पन्न व गुणांची अट लक्षात न घेता ही शिष्यवृत्ती देण्यात येत होती. परंतु शासन निर्णय दि. २४ मार्च २०२३ नुसार सुधारीत दर लागू करण्यात आले आहेत. त्यानुसार आता दरमहा रु. ३००/- प्रमाणे १० महिन्यांसाठी रु. ३०००/- संबंधित शाळेमार्फत, त्यांचे उत्पन्न व गुणांची अट लक्षात न घेता ही शिष्यवृत्ती देण्यात येते.\n\n"
-                                    "**संपर्क:**\n"
-                                    "१. संबंधित जिल्हा समाज कल्याण अधिकारी, जिल्हा परिषद, समाज कल्याण.\n"
-                                    "२. संबंधित शाळेचे मुख्याध्यापक."
-                                )
-                            },
-                            {
-                                "name": "इ. ८वी ते १०वी मध्ये शिकणाऱ्या इतर मागास मुलींना सावित्रीबाई फुले शिष्यवृत्ती",
-                                "details": (
-                                    "शासन निर्णय क्रमांक इमाव-२००३/प्र.क्र.२०१/मावक-३, दि. २५.७.२००३ अन्वये सन २००३-०४ या शैक्षणिक वर्षापासून ही योजना लागू केलेली आहे. तसेच शासन निर्णय क्रमांक पुरक-२०२२/प्र.क्र.९/शिक्षण-२, दि. २४ मार्च २०२३ अन्वये सुधारीत दराबाबतचा शासन निर्णय निर्गमित झाला आहे.\n\n"
-                                    "**लाभाचे स्वरूप:**\n"
-                                    "इयत्ता ८वी ते १०वी मध्ये शिकणाऱ्या सदर प्रवर्गातील विद्यार्थिनींना यापूर्वी दरमहा रु. १००/- प्रमाणे १० महिन्यांसाठी रु. १०००/- संबंधित शाळेमार्फत, त्यांचे उत्पन्न व गुणांची अट लक्षात न घेता ही शिष्यवृत्ती देण्यात येत होती. परंतु शासन निर्णय दि. २४ मार्च २०२३ नुसार सुधारीत दर लागू करण्यात आले आहेत. त्यानुसार आता दरमहा रु. ३००/- प्रमाणे १० महिन्यांसाठी रु. ३०००/- संबंधित शाळेमार्फत, त्यांचे उत्पन्न व गुणांची अट लक्षात न घेता ही शिष्यवृत्ती देण्यात येते.\n\n"
-                                    "**संपर्क:**\n"
-                                    "१. संबंधित जिल्हा समाज कल्याण अधिकारी, जिल्हा परिषद, समाज कल्याण.\n"
-                                    "२. संबंधित शाळेचे मुख्याध्यापक."
-                                )
-                            },
-                            {
-                                "name": "माध्यमिक शाळेत शिकत असलेल्या विजाभज/विमाप्र विद्यार्थ्यांना गुणवत्ता शिष्यवृत्ती",
-                                "details": (
-                                    "शासन निर्णय दिनांक २९ ऑगस्ट १९६६ अन्वये ही योजना विजाभज विद्यार्थ्यांना लागू करण्यात आली. तसेच शासन निर्णय दिनांक २९ ऑक्टोबर १९९६ अन्वये विमाप्र विद्यार्थ्यांसाठी ही योजना लागू करण्यात आली आहे. माध्यमिक शाळेतील हुशार व गुणवंत विद्यार्थ्यांना प्रोत्साहन देण्याकरिता ही योजना सुरू करण्यात आली आहे.\n\n"
-                                    "**योजनेच्या अटी व शर्ती:**\n"
-                                    "१. विद्यार्थी विजाभज/विमाप्र या प्रवर्गातील असावा.\n"
-                                    "२. विद्यार्थी इयत्ता ५वी ते १०वी मध्ये शिकणारा असावा.\n"
-                                    "३. गतवर्षी वार्षिक परीक्षेत विद्यार्थ्यांना ५० टक्के पेक्षा जास्त गुण घेऊन विद्यार्थी वर्गात प्रथम किंवा दृतीय क्रमांकाने पास झालेला असावा.\n\n"
-                                    "**लाभाचे स्वरूप:**\n"
-                                    "इयत्ता ५वी ते ७वी मध्ये शिकणाऱ्या विद्यार्थ्यांना दरमहा रु. २०/- प्रमाणे १० महिन्यांसाठी रु. २००/- शिष्यवृत्ती दिली जाते. तसेच इयत्ता ८वी ते १०वी मध्ये शिकणाऱ्या विद्यार्थ्यांना दरमहा रु. ४०/- प्रमाणे १० महिन्यांसाठी रु. ४००/- शिष्यवृत्ती दिली जाते.\n\n"
-                                    "**संपर्क:**\n"
-                                    "संबंधित शाळेच्या मुख्याध्यापकांनी पात्र विद्यार्थ्यांचे प्रस्ताव संबंधित जिल्हा समाज कल्याण अधिकारी, जिल्हा परिषद कार्यालयास सादर करावेत. बृहन्मुंबईसाठी सहायक संचालक, इतर मागास बहुजन कल्याण विभाग."
-                                )
-                            },
-                            {
-                                "name": "इयत्ता ५वी ते ७वी मध्ये शिकणाऱ्या इतर मागास विद्यार्थिनींना सावित्रीबाई फुले शिष्यवृत्ती",
-                                "details": (
-                                    "शासन निर्णय प्र.क.२८३/शिक्षण-२, दिनांक ३० जानेवारी २०१९ पासून इतर मागास विद्यार्थिनींना ही योजना लागू करण्यात आली आहे. मागासवर्गीय विद्यार्थिनींचे गळतीचे प्रमाण कमी करण्यासाठी प्रोत्साहनपर अनुदान म्हणून शिष्यवृत्ती दिली जाते.\n\n"
-                                    "**योजनेच्या अटी व शर्ती:**\n"
-                                    "१. विद्यार्थिनी इतर मागास प्रवर्गातील असावी.\n"
-                                    "२. विद्यार्थिनी इयत्ता ५वी ते ७वी मध्ये शिकणारी असावी.\n"
-                                    "३. विद्यार्थिनी ही शासनमान्य शाळेत नियमित शिकणारी असावी.\n\n"
-                                    "**लाभाचे स्वरूप:**\n"
-                                    "प्रति विद्यार्थिनीस यापूर्वी दरमहा रु. ६०/- प्रमाणे १० महिन्यांसाठी रु. ६००/- ही शिष्यवृत्तीची रक्कम संबंधित लाभार्थ्यास अदा केली जात होती. परंतु शासन निर्णय दि. २४ मार्च २०२३ नुसार सुधारीत दर लागू करण्यात आले आहेत. त्यानुसार आता दरमहा रु. २५०/- प्रमाणे १० महिन्यांसाठी रु. २५००/- संबंधित शाळेमार्फत, त्यांचे उत्पन्न व गुणांची अट लक्षात न घेता ही शिष्यवृत्ती देण्यात येते.\n\n"
-                                    "**संपर्क:**\n"
-                                    "या योजनेचे पात्र विद्यार्थिनीचे अर्ज भरून संबंधित जिल्हा समाज कल्याण अधिकारी, जिल्हा परिषद यांचेकडे सादर करावेत."
-                                )
-                            },
-                            {
-                                "name": "सैनिकी शाळेत शिकणाऱ्या विद्यार्थ्यांना शिष्यवृत्ती",
-                                "details": (
-                                    "विजाभज विद्यार्थ्यांना शासन निर्णय क्रमांक इबीसी-१०७४/५६४/का-५, दि. ६ ऑगस्ट १९७६ अन्वये सदर योजना लागू करण्यात आली आहे. याच धर्तीवर शासन निर्णय क्रमांक संकिर्ण-२००२/प्र.क्र.३७१/मावक-३, दि. ५ ऑगस्ट २००३ अन्वये सदर योजना विमाप्र विद्यार्थ्यांना शैक्षणिक वर्ष २००३-२००४ पासून लागू केलेली आहे. शासन निर्णय क्रमांक इबीसी-२००३/प्र.क्र.१८४/मावक-२, दि. १७/९/२००३ अन्वये रु. १५०००/- वार्षिक शुल्क निश्चित करण्यात आले आहे.\n\n"
-                                    "सैनिकी शाळेत शिक्षण घेणाऱ्या विजाभज/विमाप्र विद्यार्थ्यांनी प्रशिक्षण घेऊन भारतीय सैन्य दलामध्ये प्रवेश घेण्यासाठी प्रोत्साहन मिळण्यासाठी ही योजना सुरू करण्यात आली आहे.\n\n"
-                                    "**लाभाचे स्वरूप:**\n"
-                                    "सातारा सैनिक शाळा, भोसला मिलिटरी स्कूल नाशिक, एसएसपीएमएस सैनिक शाळा पुणे या ३ शाळांतील विजाभज व विमाप्र विद्यार्थ्यांना भोजन, कपडे, निवास, शिक्षण फी व परीक्षा फी, क्रीडा इत्यादींसाठी राज्य शासन मान्यता प्राप्त सैनिकी शाळेतील प्रवेशितास प्रति विद्यार्थी वार्षिक रु. १५०००/- पर्यंत संबंधित सैनिकी शाळेस अदा केले जातात.\n\n"
-                                    "**संपर्क:**\n"
-                                    "संबंधित जिल्ह्याचे सहायक संचालक, इतर मागास बहुजन कल्याण विभाग व संबंधित शाळा/महाविद्यालयाचे प्राचार्य."
-                                )
-                            },
-                            {
-                                "name": "माध्यमिक शाळेत शिकत असलेल्या मागासवर्गीय विद्यार्थ्यांना शिष्यवृत्ती (फक्त मुंबईकरिता)",
-                                "details": (
-                                    "सदर योजना शासन निर्णय दि. २९.१०.१९८६ अन्वये विमाप्र विद्यार्थ्यांसाठी लागू करण्यात आली आहे.\n\n"
-                                    "**योजनेच्या अटी व शर्ती:**\n"
-                                    "१. विद्यार्थी मान्यताप्राप्त शाळेत शिकत असलेला असावा.\n"
-                                    "२. इयत्ता ५वी ते १०वी पर्यंतच्या वार्षिक परीक्षेत ५० टक्के पेक्षा जास्त गुण घेऊन तो वर्गामध्ये प्रथम किंवा दृतीय क्रमांकाने उत्तीर्ण झालेला असावा.\n"
-                                    "३. तो विजाभज व विमाप्र प्रवर्गातील असावा.\n\n"
-                                    "**लाभाचे स्वरूप:**\n"
-                                    "सदर विद्यार्थ्यास इयत्ता ५वी ते ७वी दरमहा रु. २०/- प्रमाणे १० महिन्यांसाठी रु. २००/- व इयत्ता ८वी ते १०वी दरमहा रु. ४०/- प्रमाणे १० महिन्यांसाठी रु. ४००/- प्रति विद्यार्थी शिष्यवृत्ती देण्यात येते."
-                                )
-                            },
-                            {
-                                "name": "इयत्ता १ली ते १०वी मध्ये शिकत असणाऱ्या विमुक्त जाती व भटक्या जमाती (DNT) विद्यार्थ्यांना डॉ. आंबेडकर शिष्यवृत्ती",
-                                "details": (
-                                    "शासन निर्णय क्रमांक शिष्यवृत्ती-२०१८/प्र.क्र.४८/शिक्षण, दि. २७ मे २०१९ अन्वये केंद्र शासनाची डी.एन.टी. विद्यार्थ्यांसाठी डॉ. आंबेडकर मॅट्रीकपूर्व योजना सुरू करण्यात आली.\n\n"
-                                    "**लाभाचे स्वरूप:**\n"
-                                    "सदर योजनेअंतर्गत शिष्यवृत्ती व इतर अनुदानाचे दर केंद्र हिस्सा ७५ टक्के व राज्य हिस्सा २५ टक्के याप्रमाणे आहेत.\n"
-                                    "**कोष्टक: शिष्यवृत्तीचे दर (प्रतिमाह १० महिन्यांकरिता)**\n"
-                                    "| वर्ग         | शिष्यवृत्ती (रु./महिना) | एकरकमी अनुदान (रु./वर्ष) |\n"
-                                    "|-------------|-----------------------|-------------------------|\n"
-                                    "| इयत्ता १ली ते ५वी | ११०                | १,०००                  |\n"
-                                    "| इयत्ता ६वी ते ८वी | १३५                | १,५००                  |\n"
-                                    "| इयत्ता ९वी ते १०वी| १५०                | २,०००                  |\n\n"
-                                    "**संपर्क:**\n"
-                                    "संबंधित जिल्ह्याचे जिल्हा समाज कल्याण अधिकारी, जिल्हा परिषद व संबंधित जिल्ह्याचे सहायक संचालक, इतर मागास बहुजन कल्याण विभाग."
-                                )
-                            }
+                     ),
+                     "images": [
+                            "https://drive.google.com/uc?export=view&id=1_byNGaMURWcqsfPJowZJIUNF-5-D3WBk",  # Table 1
+                            "https://drive.google.com/uc?export=view&id=1z_a0pdXCx8C-szUKi705Vdly4U-eOIxF"   # Table 2
                         ]
                     },
-                    # Add other scholarship items if they exist, e.g., मॅट्रिकोत्तर शिष्यवृत्ती
-                    {
-                        "name": "मॅट्रिकोत्तर शिष्यवृत्ती",
-                        "details": "मॅट्रिकोत्तर शिष्यवृत्ती योजना विजाभज व विमाप्र विद्यार्थ्यांसाठी आहे."  # Placeholder, update if needed
-                    },
-                    {"name": "परदेशात उच्च शिक्षणासाठी शिष्यवृत्ती योजना", 
-                     "details": "परदेशात उच्च शिक्षण घेण्यासाठी आर्थिक सहाय्य देणारी शिष्यवृत्ती योजना."}
+                    {"name": "विद्यानिकेतन शाळा", "details": "विमुक्त जाती आणि भटक्या जमातींसाठी विद्यानिकेतन शाळा स्थापन करणे."}
+                ]
+            },
+            {
+                "name": "शिष्यवृत्ती",
+                "लाभ घेणारा प्रवर्ग": "इतर मागास वर्ग व VJNT व SBC",
+                "items": [
+                    {"name": "मॅट्रिक पूर्व शिष्यवृत्ती (Pre Matric Scholarship)", "details": "इतर मागास वर्ग, VJNT आणि SBC प्रवर्गातील विद्यार्थ्यांना मॅट्रिकपूर्व शिक्षणासाठी शिष्यवृत्ती."},
+                    {"name": "मॅट्रिकोत्तर शिष्यवृत्ती (Post Matric Scholarship)", "details": "मॅट्रिकोत्तर शिक्षण घेणाऱ्या विद्यार्थ्यांसाठी शिष्यवृत्ती योजना."},
+                    {"name": "परदेशात उच्च शिक्षणासाठी शिष्यवृत्ती योजना", "details": "परदेशात उच्च शिक्षण घेण्यासाठी आर्थिक सहाय्य देणारी शिष्यवृत्ती योजना."}
                 ]
             },
             {
@@ -279,101 +162,64 @@ SCHEMES = {
 }
 
 # Start command handler
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def start(update: Update, context):
+    logger.info("Received /start command")
+    if not update.message:
+        logger.error("Update has no message object")
+        raise ValueError("Update has no message object")
     keyboard = [
-        [InlineKeyboardButton(f"{i+1}. {cat['name']}", callback_data=f"{cat_id}")]
-        for i, (cat_id, cat) in enumerate(SCHEMES.items())
+        [InlineKeyboardButton("1", callback_data="cat1")],
+        [InlineKeyboardButton("2", callback_data="cat2")],
+        [InlineKeyboardButton("3", callback_data="cat3")],
+        [InlineKeyboardButton("4", callback_data="cat4")],
+        [InlineKeyboardButton("5", callback_data="cat5")],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text("नमस्ते! खालील योजनांमधून निवडा:", reply_markup=reply_markup)
+    logger.info("Sending reply with menu")
+    response = "विभागा अंतर्गत राबविल्या जाणाऱ्या योजना:\n\n"
+    response += "1. शैक्षणिक योजना\n"
+    response += "2. घरकुल/पायाभूत सुविधा बाबतच्या योजना\n"
+    response += "3. भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना\n"
+    response += "4. सामाजिक योजना\n"
+    response += "5. कौशल्य विकास व अर्थसाहाय्याच्या योजना\n\n"
+    response += "खालीलपैकी एक योजना निवडा:"
+    await update.message.reply_text(response, reply_markup=reply_markup)
+    logger.info(f"User {update.effective_user.id} started the bot")
 
-# Define the button handler
-async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+# Handler for "Hi" message
+async def handle_hi(update: Update, context):
+    if update.message.text.lower() == "hi":
+        await start(update, context)
+
+# Callback query handler for menu navigation
+# Callback query handler for menu navigation
+async def button(update: Update, context):
     query = update.callback_query
     await query.answer()
+    logger.info(f"Received callback query with data: {query.data}")
 
-    data = query.data.split(":")
-    if len(data) == 1:  # Category selection (e.g., cat1)
-        category_id = data[0]
-        category = SCHEMES[category_id]
-        keyboard = [
-            [InlineKeyboardButton(f"{i+1}. {subcat['name']}", callback_data=f"{category_id}:{i}")]
-            for i, subcat in enumerate(category["subcategories"])
-        ]
-        keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data="start")])
+    # Handle main category selection
+    if query.data in SCHEMES:
+        category = SCHEMES[query.data]
+        category_name = category["name"]
+        response = f"{category_name} अंतर्गत:\n\n"
+        keyboard = []
+
+        if "subcategories" in category:
+            subcategories = category["subcategories"]
+            for idx, subcat in enumerate(subcategories, 1):
+                response += f"{idx}. {subcat['name']}\n"
+                keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:{idx-1}")])
+        else:
+            items = category["items"]
+            for idx, item in enumerate(items, 1):
+                response += f"{idx}. {item['name']}\n"
+                keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:item:{idx-1}")])
+
+        keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data="main_menu")])
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await query.message.edit_text(f"{category['name']}:\nनिवडा", reply_markup=reply_markup)
+        await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
-    elif len(data) == 2:  # Subcategory selection (e.g., cat1:1 for शिष्यवृत्ती)
-        category_id, subcat_idx = data
-        subcat_idx = int(subcat_idx)
-        subcategory = SCHEMES[category_id]["subcategories"][subcat_idx]
-        # Display items as a numbered text list
-        items_text = "\n".join(f"{i+1}. {item['name']}" for i, item in enumerate(subcategory["items"]))
-        # Create numbered buttons for selection
-        keyboard = [
-            [InlineKeyboardButton(str(i+1), callback_data=f"{category_id}:{subcat_idx}:item:{i}")]
-            for i in range(len(subcategory["items"]))
-        ]
-        keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}")])
-        reply_markup = InlineKeyboardMarkup(keyboard)
-        await query.message.edit_text(
-            f"{subcategory['name']}:\n\n{items_text}\n\nवरील योजनेपैकी एक निवडा:",
-            reply_markup=reply_markup
-        )
-
-    elif len(data) == 4:  # Item selection (e.g., cat1:1:item:0 for मॅट्रिकपूर्व शिष्यवृत्ती)
-        category_id, subcat_idx, item_type, item_idx = data
-        subcat_idx = int(subcat_idx)
-        item_idx = int(item_idx)
-        category = SCHEMES[category_id]
-        items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
-        item_data = items[item_idx]
-
-        if item_type == "item":
-            # Check if the item has subitems (e.g., मॅट्रिकपूर्व शिष्यवृत्ती)
-            if "subitems" in item_data:
-                # Display subitems as a numbered text list
-                subitems_text = "\n".join(f"{i+1}. {subitem['name']}" for i, subitem in enumerate(item_data["subitems"]))
-                # Create numbered buttons for subitem selection
-                keyboard = [
-                    [InlineKeyboardButton(str(i+1), callback_data=f"{category_id}:{subcat_idx}:subitem:{item_idx}:{i}")]
-                    for i in range(len(item_data["subitems"]))
-                ]
-                keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
-                reply_markup = InlineKeyboardMarkup(keyboard)
-                await query.message.edit_text(
-                    f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
-                    reply_markup=reply_markup
-                )
-            else:
-                # Display details if there are no subitems
-                keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
-                reply_markup = InlineKeyboardMarkup(keyboard)
-                await query.message.reply_text(
-                    f"{item_data['name']}:\n{item_data['details']}",
-                    reply_markup=reply_markup,
-                    parse_mode="Markdown"
-                )
-
-    elif len(data) == 5:  # Sub-subcategory selection (e.g., cat1:1:subitem:0:0)
-        category_id, subcat_idx, item_type, item_idx, subitem_idx = data
-        subcat_idx = int(subcat_idx)
-        item_idx = int(item_idx)
-        subitem_idx = int(subitem_idx)
-        category = SCHEMES[category_id]
-        items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
-        item_data = items[item_idx]
-        subitem_data = item_data["subitems"][subitem_idx]
-
-        if item_type == "subitem":
-            keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:item:{item_idx}")]]
-            reply_markup = InlineKeyboardMarkup(keyboard)
-            await query.message.reply_text(
-                f"{subitem_data['name']}:\n{subitem_data['details']}",
-                reply_markup=reply_markup,
-                parse_mode="Markdown"
-            )
     # Handle back to main menu
     elif query.data == "main_menu":
         keyboard = [
@@ -391,7 +237,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         response += "4. सामाजिक योजना\n"
         response += "5. कौशल्य विकास व अर्थसाहाय्याच्या योजना\n\n"
         response += "खालीलपैकी एक योजना निवडा:"
-        await query.message.reply_text(response, reply_markup=reply_markup)
+        await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
     # Handle subcategory selection
     else:
@@ -414,7 +260,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
             keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}")])
             reply_markup = InlineKeyboardMarkup(keyboard)
-            await query.message.reply_text(response, reply_markup=reply_markup)
+            await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
     # Handle individual item selection (schemes, institutions, corporations)
     if len(query.data.split(":")) == 4:
@@ -428,7 +274,12 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         if item_type == "item":
             keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
             reply_markup = InlineKeyboardMarkup(keyboard)
+            # Send the text description
             await query.message.reply_text(f"{item_data['name']}:\n{item_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
+            # Send images if they exist
+            if "images" in item_data:
+                for image_url in item_data["images"]:
+                    await context.bot.send_photo(chat_id=query.message.chat_id, photo=image_url, reply_markup=reply_markup)
         elif item_type == "corp":
             corp_data = items[item_idx]
             if "subitems" in corp_data:
@@ -439,7 +290,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                     keyboard.append([InlineKeyboardButton(f"{idx}", callback_data=f"{query.data}:subitem:{idx-1}")])
                 keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
                 reply_markup = InlineKeyboardMarkup(keyboard)
-                await query.message.reply_text(response, reply_markup=reply_markup)
+                await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
     # Handle subitem (subcorporation) selection
     if len(query.data.split(":")) == 6:
@@ -454,46 +305,11 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:corp:{corp_idx}")]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await query.message.reply_text(f"{subitem_data['name']}:\n{subitem_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
-
 # Error handler
 async def error_handler(update: Update, context):
     logger.error(f"Update {update} caused error: {context.error}")
     if update and update.message:
         await update.message.reply_text("काहीतरी चुकले. कृपया पुन्हा प्रयत्न करा.")
-
-async def handle_item_selection(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    text = update.message.text
-    try:
-        # Convert the user's input (e.g., "1") to an item index (0-based)
-        item_idx = int(text) - 1
-        category_id = context.user_data.get("category_id")
-        subcat_idx = context.user_data.get("subcat_idx")
-
-        if category_id is None or subcat_idx is None:
-            await update.message.reply_text("कृपया प्रथम योजना निवडा.")
-            return
-
-        subcategory = SCHEMES[category_id]["subcategories"][subcat_idx]
-        if item_idx < 0 or item_idx >= len(subcategory["items"]):
-            await update.message.reply_text("कृपया वैध योजना क्रमांक टाईप करा.")
-            return
-
-        # Simulate a callback query for item selection
-        callback_data = f"{category_id}:{subcat_idx}:item:{item_idx}"
-        query = update.callback_query
-        if query is None:
-            # Create a mock callback query if needed
-            query = type("", (), {})()
-            query.message = update.message
-            query.data = callback_data
-            query.answer = lambda: None
-        else:
-            query.data = callback_data
-
-        await button(update, context)
-
-    except ValueError:
-        await update.message.reply_text("कृपया वैध योजना क्रमांक टाईप करा (उदा., 1, 2, ...).")
 
 def main():
     # Validate environment variables
@@ -509,8 +325,7 @@ def main():
 
     # Add handlers
     app.add_handler(CommandHandler('start', start))
-    app.add_handler(MessageHandler(filters.Text(["Hi", "hi", "HI"]), start))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_item_selection))
+    app.add_handler(MessageHandler(filters.Text(["Hi", "hi", "HI"]), handle_hi))
     app.add_handler(CallbackQueryHandler(button))
     app.add_error_handler(error_handler)
 
