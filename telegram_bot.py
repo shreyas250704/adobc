@@ -251,7 +251,7 @@ async def button(update: Update, context):
         if item_type == "item":
             keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
             reply_markup = InlineKeyboardMarkup(keyboard)
-            await query.message.reply_text(f"{item_data['name']}:\n{item_data['details']}", reply_markup=reply_markup)
+            await query.message.reply_text(f"{item_data['name']}:\n{item_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
         elif item_type == "corp":
             corp_data = items[item_idx]
             if "subitems" in corp_data:
