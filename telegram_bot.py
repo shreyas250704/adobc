@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 WEBHOOK_URL = os.getenv('WEBHOOK_URL')
 
-# Scheme index (with corrected scheme name)
+# Scheme index (unchanged)
 SCHEMES = {
     "1. शैक्षणिक योजना": {
         "1. आश्रमशाळा": {
@@ -172,6 +172,9 @@ def main():
     app.add_handler(CommandHandler('start', start))
     app.add_handler(CallbackQueryHandler(button))
     app.add_error_handler(error_handler)
+
+    # Initialize the application
+    app.initialize()
 
     # Create aiohttp server
     web_app = web.Application()
