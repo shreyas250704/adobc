@@ -276,7 +276,7 @@ async def button(update: Update, context):
         subitem_data = corp_data["subitems"][subitem_idx]
         keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:corp:{corp_idx}")]]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await query.message.reply_text(f"{subitem_data['name']}:\n{subitem_data['details']}", reply_markup=reply_markup)
+        await query.message.reply_text(f"{subitem_data['name']}:\n{subitem_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
 
 # Error handler
 async def error_handler(update: Update, context):
