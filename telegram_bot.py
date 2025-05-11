@@ -342,9 +342,10 @@ async def button(update: Update, context):
         response += "खालीलपैकी एक योजना निवडा:"
         await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
-    # Handle subcategory selection
+    # Handle deeper interactions
     else:
-        parts = query.data.split(":", 2)
+        parts = query.data.split(":")
+
         if len(parts) == 2:
             category_id, subcat_idx = parts
             subcat_idx = int(subcat_idx)
@@ -352,10 +353,11 @@ async def button(update: Update, context):
             subcat_data = category["subcategories"][subcat_idx]
             subcat_name = subcat_data["name"]
             response = f"{subcat_name}:\n\n"
+
             if "लाभ घेणारा प्रवर्ग" in subcat_data:
                 response += f"(लाभ घेणारा प्रवर्ग = {subcat_data['लाभ घेणारा प्रवर्ग']})\n\n"
-            keyboard = []
 
+            keyboard = []
             items = subcat_data.get("items", [])
             for idx, item in enumerate(items, 1):
                 response += f"{idx}. {item['name']}\n"
@@ -365,63 +367,59 @@ async def button(update: Update, context):
             reply_markup = InlineKeyboardMarkup(keyboard)
             await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
 
-    # Handle individual item selection (schemes, institutions, corporations)
-        elif len(data) == 4:  # Item selection (e.g., cat1:1:item:0 for मॅट्रिकपूर्व शिष्यवृत्ती)
-                category_id, subcat_idx, item_type, item_idx = data
-                subcat_idx = int(subcat_idx)
-                item_idx = int(item_idx)
-                category = SCHEMES[category_id]
-                items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
-                item_data = items[item_idx]
-        
-                if item_type == "item":
-                    # Check if the item has subitems (e.g., मॅट्रिकपूर्व शिष्यवृत्ती)
-                    if "subitems" in item_data:
-                        # Display subitems as a numbered text list
-                        subitems_text = "\n".join(f"{i+1}. {subitem['name']}" for i, subitem in enumerate(item_data["subitems"]))
-                        # Create numbered buttons for subitem selection
-                        keyboard = [
-                            [InlineKeyboardButton(str(i+1), callback_data=f"{category_id}:{subcat_idx}:subitem:{item_idx}:{i}")]
-                            for i in range(len(item_data["subitems"]))
-                        ]
-                        keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
-                        reply_markup = InlineKeyboardMarkup(keyboard)
-                        await query.message.edit_text(
-                            f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
-                            reply_markup=reply_markup
-                        )
-                    else:
-                        # Display details if there are no subitems
-                        keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
-                        reply_markup = InlineKeyboardMarkup(keyboard)
-                        await query.message.reply_text(
-                            f"{item_data['name']}:\n{item_data['details']}",
-                            reply_markup=reply_markup,
-                            parse_mode="Markdown"
-                        )
-        
-            elif len(data) == 5:  # Sub-subcategory selection (e.g., cat1:1:subitem:0:0)
-                category_id, subcat_idx, item_type, item_idx, subitem_idx = data
-                subcat_idx = int(subcat_idx)
-                item_idx = int(item_idx)
-                subitem_idx = int(subitem_idx)
-                category = SCHEMES[category_id]
-                items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
-                item_data = items[item_idx]
-                subitem_data = item_data["subitems"][subitem_idx]
-        
-                if item_type == "subitem":
-                    keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:item:{item_idx}")]]
+        elif len(parts) == 4:
+            category_id, subcat_idx, item_type, item_idx = parts
+            subcat_idx = int(subcat_idx)
+            item_idx = int(item_idx)
+            category = SCHEMES[category_id]
+            items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
+            item_data = items[item_idx]
+
+            if item_type == "item":
+                if "subitems" in item_data:
+                    subitems_text = "\n".join(
+                        f"{i+1}. {subitem['name']}" for i, subitem in enumerate(item_data["subitems"])
+                    )
+                    keyboard = [
+                        [InlineKeyboardButton(str(i+1), callback_data=f"{category_id}:{subcat_idx}:subitem:{item_idx}:{i}")]
+                        for i in range(len(item_data["subitems"]))
+                    ]
+                    keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
+                    reply_markup = InlineKeyboardMarkup(keyboard)
+                    await query.message.edit_text(
+                        f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
+                        reply_markup=reply_markup
+                    )
+                else:
+                    keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
                     reply_markup = InlineKeyboardMarkup(keyboard)
                     await query.message.reply_text(
-                        f"{subitem_data['name']}:\n{subitem_data['details']}",
+                        f"{item_data['name']}:\n{item_data['details']}",
                         reply_markup=reply_markup,
                         parse_mode="Markdown"
                     )
 
-        # Handle sub-subitem (subcorporation) selection
+        elif len(parts) == 5:
+            category_id, subcat_idx, item_type, item_idx, subitem_idx = parts
+            subcat_idx = int(subcat_idx)
+            item_idx = int(item_idx)
+            subitem_idx = int(subitem_idx)
+            category = SCHEMES[category_id]
+            items = category["items"] if "items" in category else category["subcategories"][subcat_idx]["items"]
+            item_data = items[item_idx]
+            subitem_data = item_data["subitems"][subitem_idx]
+
+            if item_type == "subitem":
+                keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:item:{item_idx}")]]
+                reply_markup = InlineKeyboardMarkup(keyboard)
+                await query.message.reply_text(
+                    f"{subitem_data['name']}:\n{subitem_data['details']}",
+                    reply_markup=reply_markup,
+                    parse_mode="Markdown"
+                )
+
         elif len(parts) == 6:
-            category_id, subcat_idx, _, corp_idx, _, subitem_idx = query.data.split(":", 5)
+            category_id, subcat_idx, _, corp_idx, _, subitem_idx = parts
             subcat_idx = int(subcat_idx)
             corp_idx = int(corp_idx)
             subitem_idx = int(subitem_idx)
@@ -429,9 +427,14 @@ async def button(update: Update, context):
             subcat = category["subcategories"][subcat_idx]
             corp_data = subcat["items"][corp_idx]
             subitem_data = corp_data["subitems"][subitem_idx]
+
             keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:corp:{corp_idx}")]]
             reply_markup = InlineKeyboardMarkup(keyboard)
-            await query.message.reply_text(f"{subitem_data['name']}:\n{subitem_data['details']}", reply_markup=reply_markup, parse_mode="Markdown")
+            await query.message.reply_text(
+                f"{subitem_data['name']}:\n{subitem_data['details']}",
+                reply_markup=reply_markup,
+                parse_mode="Markdown"
+            )
 # Error handler
 async def error_handler(update: Update, context):
     logger.error(f"Update {update} caused error: {context.error}")
