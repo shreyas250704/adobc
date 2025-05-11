@@ -1,5 +1,5 @@
 import telegram
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, ApplicationBuilder, filters
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, ApplicationBuilder, filters, ContextTypes
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 import os
 import logging
