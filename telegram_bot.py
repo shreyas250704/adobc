@@ -1,18 +1,20 @@
 import telegram
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ApplicationBuilder, CallbackQueryHandler
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ApplicationBuilder
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 import os
-from aiohttp import web
-import json
 import logging
 
 # Set up logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO
+)
 logger = logging.getLogger(__name__)
 
 # Load environment variables
 TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 WEBHOOK_URL = os.getenv('WEBHOOK_URL')
+PORT = int(os.getenv('PORT', 8000))
 
 # Scheme index (unchanged)
 SCHEMES = {
@@ -152,19 +154,20 @@ async def button(update: Update, context):
             await query.message.reply_text(f"{scheme_name}:\n{scheme_data['details']}")
 
 # Error handler
-async def error_handler(update, context):
-    logger.error(f"Error occurred: {context.error}")
-    if update.message:
+async def error_handler(update: Update, context):
+    logger.error(f"Update {update} caused error: {context.error}")
+    if update and update.message:
         await update.message.reply_text("काहीतरी चुकले. कृपया पुन्हा प्रयत्न करा.")
 
-# Webhook handler
-async def webhook(request):
-    app = request.app['bot']
-    update = Update.de_json(await request.json(), app.bot)
-    await app.process_update(update)
-    return web.Response()
+async def main():
+    # Validate environment variables
+    if not TOKEN:
+        logger.error("TELEGRAM_BOT_TOKEN is not set in environment variables")
+        raise ValueError("TELEGRAM_BOT_TOKEN is not set")
+    if not WEBHOOK_URL:
+        logger.error("WEBHOOK_URL is not set in environment variables")
+        raise ValueError("WEBHOOK_URL is not set")
 
-def main():
     # Create the Application with the bot's token
     app = ApplicationBuilder().token(TOKEN).build()
 
@@ -173,18 +176,17 @@ def main():
     app.add_handler(CallbackQueryHandler(button))
     app.add_error_handler(error_handler)
 
-    # Initialize the application
-    app.initialize()
-
-    # Create aiohttp server
-    web_app = web.Application()
-    web_app['bot'] = app
-    web_app.router.add_post(f'/{TOKEN}', webhook)
-
     # Start the webhook
-    port = int(os.getenv('PORT', 8000))  # Render provides PORT
-    logger.info(f"Starting webhook on port {port}")
-    web.run_app(web_app, host='0.0.0.0', port=port)
+    logger.info(f"Starting webhook on port {PORT} with URL {WEBHOOK_URL}")
+    await app.run_webhook(
+        listen="0.0.0.0",
+        port=PORT,
+        url_path=TOKEN,
+        webhook_url=f"{WEBHOOK_URL}{TOKEN}"
+    )
+
+    logger.info("Bot is running...")
 
 if __name__ == '__main__':
-    main()
+    import asyncio
+    asyncio.run(main())
