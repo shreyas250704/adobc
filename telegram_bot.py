@@ -20,8 +20,8 @@ PORT = int(os.getenv('PORT', 8000))
 SCHEMES = {
     "cat1": {
         "name": "शैक्षणिक योजना",
-        "subcategories": {
-            "subcat1": {
+        "subcategories": [
+            {
                 "name": "आश्रमशाळा",
                 "लाभ घेणारा प्रवर्ग": "विमुक्त जाती, भटक्या जमाती व विशेष मागास प्रवर्ग",
                 "items": [
@@ -30,7 +30,7 @@ SCHEMES = {
                     {"name": "विद्यानिकेतन शाळा", "details": "विमुक्त जाती आणि भटक्या जमातींसाठी विद्यानिकेतन शाळा स्थापन करणे."}
                 ]
             },
-            "subcat2": {
+            {
                 "name": "शिष्यवृत्ती",
                 "लाभ घेणारा प्रवर्ग": "इतर मागास वर्ग व VJNT व SBC",
                 "items": [
@@ -39,7 +39,7 @@ SCHEMES = {
                     {"name": "परदेशात उच्च शिक्षणासाठी शिष्यवृत्ती योजना", "details": "परदेशात उच्च शिक्षण घेण्यासाठी आर्थिक सहाय्य देणारी शिष्यवृत्ती योजना."}
                 ]
             },
-            "subcat3": {
+            {
                 "name": "वसतिगृहे/आधार योजना",
                 "लाभ घेणारा प्रवर्ग": "OBC, VJNT व SBC",
                 "items": [
@@ -47,12 +47,12 @@ SCHEMES = {
                     {"name": "ज्ञानज्योती सावित्रीबाई फुले आधार योजना", "details": "विद्यार्थ्यांना शिक्षणासाठी आर्थिक आधार देणारी योजना."}
                 ]
             }
-        }
+        ]
     },
     "cat2": {
         "name": "घरकुल/पायाभूत सुविधा बाबतच्या योजना",
-        "subcategories": {
-            "schemes": {
+        "subcategories": [
+            {
                 "name": "योजना",
                 "items": [
                     {"name": "वसंतराव नाईक तांडा/वस्ती सुधार योजना", "details": "वसंतराव नाईक तांडा आणि वस्ती सुधारणेसाठी योजना."},
@@ -60,12 +60,12 @@ SCHEMES = {
                     {"name": "मोदी आवाज घरकुल योजना", "details": "गरजू कुटुंबांना घरकुले बांधून देणारी योजना."}
                 ]
             }
-        }
+        ]
     },
     "cat3": {
         "name": "भटक्या जमाती क प्रवर्ग (धनगर) समाजासाठी राबविण्यात येणाऱ्या विविध योजना",
-        "subcategories": {
-            "schemes": {
+        "subcategories": [
+            {
                 "name": "योजना",
                 "items": [
                     {"name": "धनगर समाजाच्या विद्यार्थ्यांना शहरातील इंग्रजी माध्यमाच्या नामांकित निवासी शाळेत प्रवेश मिळवून देणे", "details": "धनगर समाजाच्या विद्यार्थ्यांना इंग्रजी माध्यमाच्या निवासी शाळेत प्रवेश मिळवून देणे."},
@@ -83,12 +83,12 @@ SCHEMES = {
                     {"name": "भटक्या जमाती क प्रवर्गातील धनगर समाजातील मेंढपाळ कुटुंबांना पावसाळ्यात चराई करण्याकरिता जून ते सप्टेंबर या चार महिन्यांच्या कालावधीसाठी अनुदान देणे", "details": "पावसाळ्यात चराईसाठी अनुदान."}
                 ]
             }
-        }
+        ]
     },
     "cat4": {
         "name": "सामाजिक योजना",
-        "subcategories": {
-            "schemes": {
+        "subcategories": [
+            {
                 "name": "योजना",
                 "items": [
                     {"name": "सामूहिक विवाह सोहळ्यामध्ये भाग घेऊन विवाह करण्याच्या विजाभज, इमाव व विमाप्र दंपत्यासाठी कन्यादान योजना", "details": "सामूहिक विवाह सोहळ्यासाठी कन्यादान योजना."},
@@ -96,19 +96,19 @@ SCHEMES = {
                     {"name": "स्व. वसंतराव नाईक गुणवत्ता पुरस्कार", "details": "गुणवत्तेसाठी वसंतराव नाईक पुरस्कार."}
                 ]
             }
-        }
+        ]
     },
     "cat5": {
         "name": "कौशल्य विकास व अर्थसाहाय्याच्या योजना",
-        "subcategories": {
-            "institutions": {
+        "subcategories": [
+            {
                 "name": "संस्था",
                 "items": [
                     {"name": "महात्मा ज्योतिबा फुले संशोधन व प्रशिक्षण संस्था (महाज्योती) नागपूर", "details": "संशोधन आणि प्रशिक्षणासाठी महाज्योती संस्था, नागपूर."},
                     {"name": "महाराष्ट्र संशोधन उन्नती व प्रशिक्षण प्रबोधिनी (अमृत)", "details": "संशोधन आणि प्रशिक्षणासाठी अमृत प्रबोधिनी."}
                 ]
             },
-            "corporations": {
+            {
                 "name": "महामंडळे",
                 "items": [
                     {
@@ -129,7 +129,7 @@ SCHEMES = {
                     }
                 ]
             }
-        }
+        ]
     }
 }
 
@@ -166,13 +166,15 @@ async def button(update: Update, context):
     if query.data in SCHEMES:
         category = SCHEMES[query.data]
         category_name = category["name"]
-        subcategories = category.get("subcategories", {})
+        subcategories = category.get("subcategories", [])
+        response = f"{category_name} अंतर्गत:\n\n"
         keyboard = []
-        for subcat_id, subcat in subcategories.items():
-            keyboard.append([InlineKeyboardButton(subcat["name"], callback_data=f"{query.data}:{subcat_id}")])
+        for idx, subcat in enumerate(subcategories, 1):
+            response += f"{idx}. {subcat['name']}\n"
+            keyboard.append([InlineKeyboardButton(f"{idx}. {subcat['name']}", callback_data=f"{query.data}:{idx-1}")])
         keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data="main_menu")])
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await query.message.reply_text(f"{category_name} अंतर्गत:", reply_markup=reply_markup)
+        await query.message.reply_text(response, reply_markup=reply_markup)
 
     # Handle back to main menu
     elif query.data == "main_menu":
@@ -190,25 +192,20 @@ async def button(update: Update, context):
     else:
         parts = query.data.split(":", 2)
         if len(parts) == 2:
-            category_id, subcat_id = parts
+            category_id, subcat_idx = parts
+            subcat_idx = int(subcat_idx)
             category = SCHEMES[category_id]
-            subcat_data = category["subcategories"][subcat_id]
+            subcat_data = category["subcategories"][subcat_idx]
             subcat_name = subcat_data["name"]
             response = f"{subcat_name}:\n\n"
             if "लाभ घेणारा प्रवर्ग" in subcat_data:
                 response += f"(लाभ घेणारा प्रवर्ग = {subcat_data['लाभ घेणारा प्रवर्ग']})\n\n"
             keyboard = []
 
-            if subcat_id in ["schemes", "institutions"]:
-                items = subcat_data.get("items", [])
-                for item in items:
-                    response += f"- {item['name']}\n"
-                    keyboard.append([InlineKeyboardButton(item['name'], callback_data=f"{query.data}:item:{item['name']}")])
-            elif subcat_id == "corporations":
-                items = subcat_data.get("items", [])
-                for item in items:
-                    response += f"- {item['name']}\n"
-                    keyboard.append([InlineKeyboardButton(item['name'], callback_data=f"{query.data}:corp:{item['name']}")])
+            items = subcat_data.get("items", [])
+            for idx, item in enumerate(items, 1):
+                response += f"{idx}. {item['name']}\n"
+                keyboard.append([InlineKeyboardButton(f"{idx}. {item['name']}", callback_data=f"{query.data}:item:{idx-1}")])
 
             keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}")])
             reply_markup = InlineKeyboardMarkup(keyboard)
@@ -216,42 +213,44 @@ async def button(update: Update, context):
 
     # Handle individual item selection (schemes, institutions, corporations)
     if len(query.data.split(":")) == 4:
-        category_id, subcat_id, item_type, item_name = query.data.split(":", 3)
+        category_id, subcat_idx, item_type, item_idx = query.data.split(":", 3)
+        subcat_idx = int(subcat_idx)
+        item_idx = int(item_idx)
         category = SCHEMES[category_id]
-        subcat = category["subcategories"][subcat_id]
+        subcat = category["subcategories"][subcat_idx]
         
         if item_type == "item":
             items = subcat.get("items", [])
-            item_data = next((s for s in items if s["name"] == item_name), None)
-            if item_data:
-                keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_id}")]]
-                reply_markup = InlineKeyboardMarkup(keyboard)
-                await query.message.reply_text(f"{item_name}:\n{item_data['details']}", reply_markup=reply_markup)
+            item_data = items[item_idx]
+            keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")]]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            await query.message.reply_text(f"{item_data['name']}:\n{item_data['details']}", reply_markup=reply_markup)
         elif item_type == "corp":
             items = subcat.get("items", [])
-            corp_data = next((c for c in items if c["name"] == item_name), None)
-            if corp_data and "subitems" in corp_data:
-                response = f"{item_name}:\n\n"
+            corp_data = items[item_idx]
+            if "subitems" in corp_data:
+                response = f"{corp_data['name']}:\n\n"
                 keyboard = []
-                for subitem in corp_data["subitems"]:
-                    response += f"- {subitem['name']}\n"
-                    keyboard.append([InlineKeyboardButton(subitem['name'], callback_data=f"{query.data}:subitem:{subitem['name']}")])
-                keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_id}")])
+                for idx, subitem in enumerate(corp_data["subitems"], 1):
+                    response += f"{idx}. {subitem['name']}\n"
+                    keyboard.append([InlineKeyboardButton(f"{idx}. {subitem['name']}", callback_data=f"{query.data}:subitem:{idx-1}")])
+                keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}")])
                 reply_markup = InlineKeyboardMarkup(keyboard)
                 await query.message.reply_text(response, reply_markup=reply_markup)
 
     # Handle subitem (subcorporation) selection
     if len(query.data.split(":")) == 6:
-        category_id, subcat_id, _, corp_name, _, subitem_name = query.data.split(":", 5)
+        category_id, subcat_idx, _, corp_idx, _, subitem_idx = query.data.split(":", 5)
+        subcat_idx = int(subcat_idx)
+        corp_idx = int(corp_idx)
+        subitem_idx = int(subitem_idx)
         category = SCHEMES[category_id]
-        subcat = category["subcategories"][subcat_id]
-        corp_data = next((c for c in subcat["items"] if c["name"] == corp_name), None)
-        if corp_data:
-            subitem_data = next((si for si in corp_data["subitems"] if si["name"] == subitem_name), None)
-            if subitem_data:
-                keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_id}:corp:{corp_name}")]]
-                reply_markup = InlineKeyboardMarkup(keyboard)
-                await query.message.reply_text(f"{subitem_name}:\n{subitem_data['details']}", reply_markup=reply_markup)
+        subcat = category["subcategories"][subcat_idx]
+        corp_data = subcat["items"][corp_idx]
+        subitem_data = corp_data["subitems"][subitem_idx]
+        keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}:{subcat_idx}:corp:{corp_idx}")]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await query.message.reply_text(f"{subitem_data['name']}:\n{subitem_data['details']}", reply_markup=reply_markup)
 
 # Error handler
 async def error_handler(update: Update, context):
