@@ -19,9 +19,8 @@ PORT = int(os.getenv('PORT', 8000))
 
 async def health_check(request):
     return web.Response(text="OK")
-
-app = web.Application()
-app.router.add_get('/', health_check)
+    app = web.Application()
+    app.router.add_get('/', health_check)
 
 # Scheme index
 SCHEMES = {
