@@ -509,7 +509,7 @@ SCHEMES = {
         "https://drive.google.com/uc?export=view&id=11PpxJtKU4pS-JRxTfp8iF2fbeGdBv5QK"
     ]
     },
-            {"name": "विमुक्त जाती भटक्या जमाती या घटकांसह यशवंतराव चव्हाण मुक्त वसाहत योजना", 
+            {"name": "विमुक्त जाती भटक्या जमाती या घटकांसाठी यशवंतराव चव्हाण मुक्त वसाहत योजना", 
              "details": (
         "१) राज्यातील ग्रामीण भागातील विमुक्त जाती भटक्या जमाती प्रवर्गातील समाजास विकासाच्या मुख्य प्रवाहात आणून त्यांचे राहणीमान उंचावे, त्यांना स्थिरता प्राप्त व्हावी तसेच त्यांना आर्थिकदृष्ट्या स्वयंपूर्ण बनविण्याच्या उद्देशाने 'रमाई आवास योजना' व 'पंतप्रधान आवास योजनेच्या धर्तीवर वैयक्तिक तसेच सामूहिकरित्या घरकुलांचा लाभ देण्यासाठी 'यशवंतराव चव्हाण मुक्त वसाहत योजना' सन २०११-१२ या आर्थिक वर्षापासून राबविण्यात येते.\n\n"
         "२) सदरहू योजनेंतर्गत ज्या लाभार्थ्यांकडे घरकुल बांधकामाकरीता स्वतःची जागा आहे, असे लाभार्थी केवळ वैयक्तिक लाभास पात्र असून आणि ज्या लाभार्थ्यांकडे घरकुल बांधकामाकरीता स्वतःची जागा नाही ते सामूहिकरित्या योजनेच्या लाभास पात्र आहेत.\n\n"
@@ -531,7 +531,7 @@ SCHEMES = {
         "https://drive.google.com/uc?export=view&id=1wKn24SPEP6Ig8xqZKo6QQozTLU4ozp2J"
     ]
 },
-            {"name": "मोदी आवाज घरकुल योजना", 
+            {"name": "मोदी आवास घरकुल योजना", 
              "details": (
         "राज्यात ग्रामीण भागात वास्तव्यास असणाऱ्या इतर मागास वर्ग, विमुक्त जाती, भटक्या जमाती व विशेष मागास प्रवर्गातील पात्र कुटुंबांना घरकुल योजनेचा लाभ देण्यासाठी 'मोदी आवास' घरकुल योजना राबविण्यास शासन मान्यता देण्यात आलेली आहे.\n\n"
         "**पात्र लाभार्थी:**\n"
@@ -760,6 +760,41 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup = InlineKeyboardMarkup(keyboard)
             await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
             await send_images_if_any(context, query.message.chat_id, subcat_data)
+
+        elif len(parts) == 3:  # Handle direct items (e.g., cat2:item:0)
+            category_id, item_type, item_idx = parts
+            item_idx = int(item_idx)
+            category = SCHEMES[category_id]
+
+            if item_type == "item":
+                if "items" in category:
+                    item_data = category["items"][item_idx]
+                    if "subitems" in item_data:
+                        subitems_text = "\n".join(
+                            f"{i+1}. {subitem['name']}" for i, subitem in enumerate(item_data["subitems"])
+                        )
+                        keyboard = [
+                            [InlineKeyboardButton(str(i+1), callback_data=f"{category_id}:subitem:{item_idx}:{i}")]
+                            for i in range(len(item_data["subitems"]))
+                        ]
+                        keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}")])
+                        reply_markup = InlineKeyboardMarkup(keyboard)
+                        await query.message.edit_text(
+                            f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
+                            reply_markup=reply_markup
+                        )
+                        await send_images_if_any(context, query.message.chat_id, item_data)
+                    else:
+                        keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}")]]
+                        reply_markup = InlineKeyboardMarkup(keyboard)
+                        await query.message.reply_text(
+                            f"{item_data['name']}:\n{item_data['details']}",
+                            reply_markup=reply_markup,
+                            parse_mode="Markdown"
+                        )
+                        await send_images_if_any(context, query.message.chat_id, item_data)
+                else:
+                    logger.error(f"No items found in category {category_id}")
 
         elif len(parts) == 4:
             category_id, subcat_idx, item_type, item_idx = parts
