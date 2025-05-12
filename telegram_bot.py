@@ -583,6 +583,20 @@ async def send_images_if_any(context, chat_id, data, reply_markup=None):
             await context.bot.send_photo(chat_id=chat_id, photo=image_url, reply_markup=reply_markup)
 
 # Main button callback handler
+async def send_images_if_any(context: ContextTypes.DEFAULT_TYPE, chat_id: int, data: dict):
+    """
+    Sends images if they exist in the data dictionary.
+    """
+    try:
+        if "images" in data and data["images"]:
+            logger.info(f"Sending images for chat_id {chat_id}: {data['images']}")
+            for image_url in data["images"]:
+                await context.bot.send_photo(chat_id=chat_id, photo=image_url)
+        else:
+            logger.info(f"No images found in data for chat_id {chat_id}")
+    except Exception as e:
+        logger.error(f"Failed to send images for chat_id {chat_id}: {str(e)}")
+
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -606,7 +620,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data="main_menu")])
         reply_markup = InlineKeyboardMarkup(keyboard)
         await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
-        await send_images_if_any(context, query.message.chat_id, category, reply_markup)
+        await send_images_if_any(context, query.message.chat_id, category)
 
     elif query.data == "main_menu":
         keyboard = [
@@ -649,7 +663,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             keyboard.append([InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}")])
             reply_markup = InlineKeyboardMarkup(keyboard)
             await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
-            await send_images_if_any(context, query.message.chat_id, subcat_data, reply_markup)
+            await send_images_if_any(context, query.message.chat_id, subcat_data)
 
         elif len(parts) == 4:
             category_id, subcat_idx, item_type, item_idx = parts
@@ -674,7 +688,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         f"{item_data['name']}:\n\n{subitems_text}\n\nवरील योजनेपैकी एक निवडा:",
                         reply_markup=reply_markup
                     )
-                    await send_images_if_any(context, query.message.chat_id, item_data, reply_markup)
+                    await send_images_if_any(context, query.message.chat_id, item_data)
                 else:
                     keyboard = [[InlineKeyboardButton("⬅️ मागे", callback_data=f"{category_id}" if "items" in category else f"{category_id}:{subcat_idx}")]]
                     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -683,7 +697,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         reply_markup=reply_markup,
                         parse_mode="Markdown"
                     )
-                    await send_images_if_any(context, query.message.chat_id, item_data, reply_markup)
+                    await send_images_if_any(context, query.message.chat_id, item_data)
 
         elif len(parts) == 5:
             category_id, subcat_idx, item_type, item_idx, subitem_idx = parts
@@ -703,7 +717,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     reply_markup=reply_markup,
                     parse_mode="Markdown"
                 )
-                await send_images_if_any(context, query.message.chat_id, subitem_data, reply_markup)
+                await send_images_if_any(context, query.message.chat_id, subitem_data)
 
         elif len(parts) == 6:
             category_id, subcat_idx, _, corp_idx, _, subitem_idx = parts
@@ -722,7 +736,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 reply_markup=reply_markup,
                 parse_mode="Markdown"
             )
-            await send_images_if_any(context, query.message.chat_id, subitem_data, reply_markup)
+            await send_images_if_any(context, query.message.chat_id, subitem_data)
 # Error handler
 async def error_handler(update: Update, context):
     logger.error(f"Update {update} caused error: {context.error}")
