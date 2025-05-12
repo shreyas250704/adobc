@@ -3,6 +3,15 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 import os
 import logging
+from aiohttp import web
+
+
+async def health_check(request):
+    return web.Response(text="OK", status=200)
+
+# Create the application
+app = web.Application()
+app.router.add_get('/health', health_check)
 
 # Set up logging
 logging.basicConfig(
@@ -906,3 +915,5 @@ def main():
 
 if __name__ == '__main__':
     main() 
+    port = int(os.getenv('PORT', 8000))  # Default to port 8000 if not set
+    web.run_app(app, port=port)
