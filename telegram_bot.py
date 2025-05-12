@@ -17,11 +17,6 @@ TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 WEBHOOK_URL = os.getenv('WEBHOOK_URL')
 PORT = int(os.getenv('PORT', 8000))
 
-async def health_check(request):
-    return web.Response(text="OK")
-    app = web.Application()
-    app.router.add_get('/', health_check)
-
 # Scheme index
 SCHEMES = {
     "cat1": {
@@ -890,24 +885,47 @@ def main():
         raise ValueError("WEBHOOK_URL is not set")
 
     # Create the Application with the bot's token
-    app = ApplicationBuilder().token(TOKEN).build()
+async def health_check(request):
+    return web.Response(text="OK")
 
-    # Add handlers
-    app.add_handler(CommandHandler('start', start))
-    app.add_handler(MessageHandler(filters.Text(["Hi", "hi", "HI"]), handle_hi))
-    app.add_handler(CallbackQueryHandler(button))
-    app.add_error_handler(error_handler)
+# Define the webhook handler
+async def webhook(request):
+    json_str = await request.text()
+    update = Update.de_json(json_str, application.bot)
+    application.process_update(update)
+    return web.Response(text="OK")
 
-    # Start the webhook
-    logger.info(f"Starting webhook on port {PORT} with URL {WEBHOOK_URL}")
-    app.run_webhook(
-        listen="0.0.0.0",
-        port=PORT,
-        url_path=TOKEN,
-        webhook_url=f"{WEBHOOK_URL}{TOKEN}"
-    )
+# Set up the webhook route
+app = web.Application()
+app.router.add_get("/", health_check)
+app.router.add_post("/webhook", webhook)
 
-    logger.info("Bot is running...")
+# Set up the Telegram bot application
+application = ApplicationBuilder().token(TOKEN).build()
 
+# Function to set up the webhook
+async def set_webhook():
+    if WEBHOOK_URL:
+        webhook_url = f"{WEBHOOK_URL}/webhook"  # Ensure the correct URL path
+        await application.bot.set_webhook(webhook_url)  # Set the webhook with python-telegram-bot
+        logger.info(f"Webhook set to {webhook_url}")
+    else:
+        logger.error("Error: WEBHOOK_URL is not set.")
+
+# Main entry point
+async def on_startup(app):
+    await set_webhook()
+
+app.on_startup.append(on_startup)
+
+# Add handlers to the application
+application.add_handler(CommandHandler('start', start))
+application.add_handler(MessageHandler(filters.TEXT & (filters.Regex("Hi|hi|HI")), handle_hi))
+application.add_handler(CallbackQueryHandler(button))
+application.add_error_handler(error_handler)
+
+# Start the aiohttp server
 if __name__ == '__main__':
-    main()
+    logger.info(f"Starting bot webhook on port {PORT} with URL {WEBHOOK_URL}")
+    web.run_app(app, host="0.0.0.0", port=PORT)
+    logger.info("Bot is running...")
