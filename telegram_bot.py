@@ -468,7 +468,7 @@ SCHEMES = {
                     "क्रमांक वगृयो-२०२२/प्र.क्र.११/योजना-५, दि. १३ डिसेंबर, २०२३"
                   ),
                   "images": [
-                    "[https://drive.google.com/uc?export=view&id=1Nkl7e2Qqg0U3PWnjve9deUD5yZUqbmtV](https://drive.google.com/uc?export=view&id=1Nkl7e2Qqg0U3PWnjve9deUD5yZUqbmtV)"
+                            "https://drive.google.com/uc?export=view&id=1Nkl7e2Qqg0U3PWnjve9deUD5yZUqbmtV"
                             ]
                     }
               ]
