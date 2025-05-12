@@ -3,7 +3,6 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 import os
 import logging
-import requests
 
 # Set up logging
 logging.basicConfig(
