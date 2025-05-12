@@ -3,6 +3,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 import os
 import logging
+import aiohttp
 
 # Set up logging
 logging.basicConfig(
@@ -15,6 +16,12 @@ logger = logging.getLogger(__name__)
 TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 WEBHOOK_URL = os.getenv('WEBHOOK_URL')
 PORT = int(os.getenv('PORT', 8000))
+
+async def health_check(request):
+    return web.Response(text="OK")
+
+app = web.Application()
+app.router.add_get('/', health_check)
 
 # Scheme index
 SCHEMES = {
