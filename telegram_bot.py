@@ -470,9 +470,11 @@ SCHEMES = {
                   "images": [
                     "[https://drive.google.com/uc?export=view&id=1Nkl7e2Qqg0U3PWnjve9deUD5yZUqbmtV](https://drive.google.com/uc?export=view&id=1Nkl7e2Qqg0U3PWnjve9deUD5yZUqbmtV)"
                             ]
-                }
+                    }
               ]
-            }
+           ]
+        },
+    
     "cat2": {
         "name": "घरकुल/पायाभूत सुविधा बाबतच्या योजना",
         "items": [
@@ -541,8 +543,6 @@ SCHEMES = {
             ]
         }
     }
-}
-
 # Start command handler
 async def start(update: Update, context):
     logger.info("Received /start command")
