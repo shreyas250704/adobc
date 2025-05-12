@@ -3,6 +3,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 import os
 import logging
+import requests
 
 # Set up logging
 logging.basicConfig(
@@ -873,6 +874,21 @@ async def error_handler(update: Update, context):
     logger.error(f"Update {update} caused error: {context.error}")
     if update and update.message:
         await update.message.reply_text("काहीतरी चुकले. कृपया पुन्हा प्रयत्न करा.")
+        
+async def reset_webhook():
+    """Reset the webhook on startup."""
+    try:
+        response = requests.get(
+            "https://api.telegram.org/bot8055609182:AAFIk1ytvfWEng7Iltr1eYjhE26a1sD5HC4/setWebhook",
+            params={"url": "https://adobc.onrender.com/8055609182:AAFIk1ytvfWEng7Iltr1eYjhE26a1sD5HC4", "drop_pending_updates": True}
+        )
+        result = response.json()
+        if result.get("ok"):
+            logger.info("Webhook reset successfully on startup")
+        else:
+            logger.error(f"Failed to reset webhook: {result}")
+    except Exception as e:
+        logger.error(f"Error resetting webhook on startup: {str(e)}")
 
 def main():
     # Validate environment variables
