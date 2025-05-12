@@ -3,7 +3,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 import os
 import logging
-import aiohttp
+from aiohttp import web
 
 # Set up logging
 logging.basicConfig(
